@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "name": "Greyscale",
+        "id": "greyscale",
+        "types": [
+            "image/*"
+        ],
+        "api": [
+            "greyscale/main"
+        ]
+    },
+    "content": {
+        "serve": [
+            {
+                "type": "javascript",
+                "path": "greyscale.js",
+                "as": "main"
+            }
+        ],
+        "html": {
+            "header": [
+                { "type": "button", "innerText": "Save", "onPress": "main/save" },
+                { "type": "span", "innerText": "Unsaved", "id": "save_status", "class": ["no_background"] }
+            ], 
+            "body": [
+                { "type": "textarea", "id": "text_field", "onLoad": "main/load" }
+            ]
+        }
+    }
+}

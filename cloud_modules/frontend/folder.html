@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>StandUp - Cloud</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@30,400,0,0" />
+  <link rel="shortcut icon" href="/res/icon" type="image/svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/res/style/main">
+  <link rel="stylesheet" href="/res/style/index">
+
+</head>
+
+<body id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+  <div id="context-menue" class="context-menue" style="display: none; position: absolute; ">
+    <ul class="sidebar-list">
+      <li class="icon-li" id="context-delete"><span class="material-symbols-rounded">delete</span>Delete</li>
+      <li class="icon-li" id="context-copylink"><span class="material-symbols-rounded">link</span>Copy Link</li>
+      <li class="icon-li" id="context-encrypt"><span class="material-symbols-rounded">extension</span>Addons</li>
+      <li class="icon-li" id="context-rename"><span class="material-symbols-rounded">border_color</span>Rename</li>
+    </ul>
+  </div>
+
+  <div id="upload-context" class="context-menue"
+    style="display: none; position: absolute; background-color: #c2e7ff; top: 30px; left: 50%; transform: translateX(-50%); padding: 15px 40px; font-size: 25px;">
+  </div>
+  <div class="container">
+    <nav class="sidenav">
+      <img id="sidebar-icon" src="/res/icon">
+      <ul class="sidebar-list" id="nav-2">
+        <li class="icon-li hide"><a href="/"><span class="material-symbols-rounded">cloud</span>My Files</a></li>
+        <li class="icon-li hide"><span class="material-symbols-rounded">extension</span>Addons</li>
+        <li class="icon-li"><a onclick="javascript:createFolder(true, 'upload-file-div')"><span
+              class="material-symbols-rounded">add_circle</span>Add File</a></li>
+        <li class="icon-li"><a onclick="javascript:createFolder(true, 'create-folder-div')"><span
+              class="material-symbols-rounded">create_new_folder</span>Create Folder</a></li>
+        <li class="hide" id="datebase-usage"><span class="material-symbols-rounded">database</span>0MB used</li>
+      </ul>
+    </nav>
+    <!-- Create Actions -->
+    <section id="create-folder-div">
+      <div class="create-folder-wrapper">
+        <div class="card">
+          <h2 style="margin-bottom: 25px;">Create Folder</h2>
+          <input type="text" id="folderNameInput" class="input-custom">
+          <button onclick="javascript:createFolder(false, 'create-folder-div')" class="input-custom">Cancel</button>
+          <button onclick="javascript:redirectToFolder() " class="input-custom">Create</button>
+        </div>
+      </div>
+    </section>
+    <section id="upload-file-div">
+      <div class="create-folder-wrapper">
+        <div class="card">
+          <h2 style="margin-bottom: 25px;">Upload File</h2>
+          <input type="file" id="fileNameInput" class="input-custom" multiple="multiple">
+          <button onclick="javascript:createFolder(false, 'upload-file-div')" class="input-custom">Cancel</button>
+          <button onclick="javascript:upload() " class="input-custom">Create</button>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.body.addEventListener('keydown', (event) => {
+        if (event.key === "Escape") {
+          createFolder(false,'upload-file-div');
+          createFolder(false,'create-folder-div');
+          clearInputFile(document.getElementById("fileNameInput"));
+        }
+      })
+
+      const create_folder_div = document.getElementById("create-folder-div");
+      const create_folder_wrapper = document.getElementById("create-folder-wrapper");
+
+      function createFolder(param, id_name) {
+        param ? document.getElementById(id_name).style.display = "block" : document.getElementById(id_name).style.display = "none";
+      }
+      function redirectToFolder() {
+        window.location.href = "/folder/" + document.getElementById("folderNameInput").value;
+      }
+
+      async function upload() {
+        if (!document.getElementById("fileNameInput").files[0]) return;
+        for (let i = 0; i < document.getElementById("fileNameInput").files.length; i++) {
+
+          const formData = new FormData();
+          formData.append("file", document.getElementById("fileNameInput").files[i]);
+          formData.append("folder", decodeURI(window.location.pathname.substr(8)));
+
+          try {
+            const response = await fetch("/upload", {
+              method: "POST",
+              body: formData,
+            });
+
+            const data = await response.json();
+            const message = document.getElementById("upload-context");
+
+            if (response.ok) {
+              message.style.display = "block";
+
+              message.innerText = data.message;
+              message.style.color = "#131719";
+            } else {
+              document.getElementById("upload-context").style.display = "block";
+              message.innerText = data.error;
+              message.style.color = "red";
+            }
+
+            setTimeout(() => {
+              message.style.display = "none";
+            }, 2000);
+          } catch (error) {
+            console.error("Error uploading file:", error);
+            message.textContent = "Failed to upload file";
+            message.style.color = "red";
+          }
+        }
+        createFolder(false, 'upload-file-div');
+        clearInputFile(document.getElementById("fileNameInput"));
+        setTimeout(() => {
+          fetchFiles();
+          createFolder(false, 'upload-file-div')
+        }, 200);
+
+      }
+
+      function clearInputFile(f) {
+        if (f.value) {
+          try {
+            f.value = ''; //for IE11, latest Chrome/Firefox/Opera...
+          } catch (err) { }
+          if (f.value) { //for IE5 ~ IE10
+            var form = document.createElement('form'),
+              parentNode = f.parentNode, ref = f.nextSibling;
+            form.appendChild(f);
+            form.reset();
+            parentNode.insertBefore(f, ref);
+          }
+        }
+      }
+
+    </script>
+    <main>
+      <h2><a href="/"><span class="material-symbols-rounded">arrow_back</span></a><span id="folder-name"></span></h2>
+      <div class="grid" id="fileGrid"></div>
+
+    </main>
+  </div>
+
+  <script>
+    const folderName = decodeURI(window.location.pathname.substr(8));
+    document.getElementById("folder-name").innerText = folderName;
+    console.log(window.location.pathname.substr(8));
+
+    const fileGrid = document.getElementById("fileGrid");
+    const context = document.getElementById("context-menue");
+    const scope = document.querySelector("body");
+
+    const context_delete = document.getElementById("context-delete");
+    const context_copylink = document.getElementById("context-copylink");
+    const context_rename = document.getElementById("context-rename");
+    let current_context_card;
+
+    context_delete.addEventListener('click', async (e) => { await fetch("/files/" + current_context_card + "/del"); hideContext(); fetchFiles(); })
+    context_copylink.addEventListener('click', async (e) => {
+      console.log(new URL("/files/" + current_context_card, location));
+      window.alert(new URL("/files/" + current_context_card, location))
+    });
+
+    async function fetchFiles() {
+      fileGrid.innerHTML = "";
+      try {
+        const response = await fetch("/folder/" + folderName + "/api");
+        console.log(response)
+        const files = await response.json();
+
+        if (response.ok) {
+          let fileSize = 0;
+          files.forEach((file) => {
+            const fileCard = document.createElement("div");
+            fileCard.classList.add("file-card");
+            const fileName = document.createElement("p");
+            if(file.hasExpireDate == true) {
+              fileName.innerText = file.name.slice(0, 17);
+              if (file.name.length > 16) fileName.innerText = file.name.slice(0, 13) + "...";
+              fileName.innerHTML = "<span class='material-symbols-rounded' style='font-size: 18px'>avg_pace</span>" + fileName.innerText;
+            } else {
+              fileName.innerText = file.name.slice(0, 19);
+              if (file.name.length > 19) fileName.innerText = file.name.slice(0, 17) + "...";
+            }
+            fileName.classList.add("file-name");
+            const fileLink = document.createElement("a");
+            fileLink.href = file.downloadLink;
+            fileLink.target = "_blank";
+
+            if (file.type.startsWith("image/")) {
+              const fileImage = document.createElement("img");
+              fileImage.src = file.downloadLink;
+              fileLink.appendChild(fileImage);
+            } else if(file.type.startsWith("application/pdf")) {
+              const fileImage = document.createElement("img");
+              fileImage.src = "/res/mime/pdf";
+              fileLink.appendChild(fileImage);
+            } else if(file.type.startsWith("application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+              const fileImage = document.createElement("img");
+              fileImage.src = "/res/mime/docx";
+              fileLink.appendChild(fileImage);
+            } else if (file.type.startsWith("audio/")) {
+              const fileImage = document.createElement("img");
+              fileImage.src = "/res/mime/audio";
+              fileLink.appendChild(fileImage);
+            } else if (file.type.startsWith("video/")) {
+              const fileImage = document.createElement("img");
+              fileImage.src = "/res/mime/video";
+              fileLink.appendChild(fileImage);
+            } else if (file.type.startsWith("application/")) {
+              const fileImage = document.createElement("img");
+              fileImage.src = "/res/mime/application";
+              fileLink.appendChild(fileImage);
+            } else {
+              const fileName = document.createElement("p");
+              fileName.textContent = file.name;
+              fileLink.appendChild(fileName);
+            }
+            fileCard.appendChild(fileName);
+            fileCard.appendChild(fileLink);
+            fileGrid.appendChild(fileCard);
+
+            fileCard.addEventListener('contextmenu', (e) => {
+              e.preventDefault();
+              context.style.top = `${e.clientY}px`;
+              context.style.left = `${e.clientX}px`;
+              current_context_card = file.uuid;
+              console.log(current_context_card)
+              context.style.display = `block`;
+            });
+
+            fileSize = fileSize + file.size;
+          });
+
+          console.log(fileSize);
+          fileSize = (fileSize / 1024 / 1024).toPrecision(4) + " MB";
+          document.getElementById("datebase-usage").innerHTML = "<span class='material-symbols-rounded'>database</span>" + fileSize + " used";
+          scope.addEventListener('click', (e) => {
+            if (e.target.offsetParent != context) hideContext();
+          });
+        } else {
+          console.error("Failed to fetch files:", files.error);
+        }
+      } catch (error) {
+        console.error("Error fetching files:", error);
+      }
+    }
+
+    fetchFiles();
+    scope.addEventListener('contextmenu', (e) => e.preventDefault());
+    const hideContext = () => { context.style.display = `none`; current_context_card = ""; }
+  </script>
+
+  <script>
+    const upload_list = document.getElementById("uploadListElement");
+
+    async function dropHandler(event) {
+      event.preventDefault();
+      var files = event.dataTransfer.files;
+      // Process dropped files here
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", folderName);
+
+        try {
+          const response = await fetch("/upload", {
+            method: "POST",
+            body: formData,
+          });
+
+          const data = await response.json();
+          const message = document.getElementById("upload-context");
+
+          if (response.ok) {
+            message.style.display = "block";
+
+            message.innerText = data.message;
+            message.style.color = "#131719";
+          } else {
+            document.getElementById("upload-context").style.display = "block";
+            message.innerText = data.error;
+            message.style.color = "red";
+          }
+
+          setTimeout(() => {
+            message.style.display = "none";
+          }, 2000);
+        } catch (error) {
+          console.error("Error uploading file:", error);
+          message.textContent = "Failed to upload file";
+          message.style.color = "red";
+        }
+      }
+
+      setTimeout(() => {
+        fetchFiles();
+      }, 200);
+
+    }
+
+    function dragOverHandler(event) {
+      event.preventDefault();
+    }
+  </script>
+</body>
+
+</html>

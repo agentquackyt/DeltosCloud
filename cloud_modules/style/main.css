@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@font-face {
+  font-family: 'GoogleSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/res/style/googlesans.woff) format('woff');
+}
+
+@import url('/res/style/index');
+* {
+  font-family: 'GoogleSans','Lato', sans-serif;
+  user-select: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background);
+}
+
+.container {
+  max-width: auto;
+  padding: 20px;
+  display: inline-block;
+  width: 95%;
+}
+
+main {
+  margin-left: 200px;
+  padding: 20px;
+  background-color: var(--contentBackground);
+  color: var(--onContentBackground);
+  border-radius: 25px;
+  min-height: 85vh;
+  width: auto;
+}
+
+
+
+/* Style the side navigation */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  overflow-x: hidden;
+  max-height: 95vh;
+}
+
+.context-menue {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--background);
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+#sidebar-icon {
+  height: 100px;
+  width: auto;
+}
+
+.icon-li {
+  font-size: 20px !important;
+  padding: 10px;
+  border-radius: 20px;
+  color: var(--onPrimary);
+}
+
+#datebase-usage {
+  font-size: 20px !important;
+  padding: 10px;
+  margin-top: 50px;
+  border-radius: 20px;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.icon-li:hover {
+  background-color: var(--primaryHover);
+}
+
+.material-symbols-rounded {
+  position: relative;
+  left: 0;
+  transform: translateY(18%);
+  margin-right: 10px;
+}
+
+
+#create-folder-div, #upload-file-div {
+  position: fixed;
+  display: none;
+  z-index: 25;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: #6a6a6a9b;
+}
+
+/* Create folders */
+
+.create-folder-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.card {
+  background-color: var(--background);
+  color: var(--onBackground);
+  padding:  5px 25px 25px 25px;
+  border-radius: 15px;
+}
+
+.input-custom {
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--onPrimary);
+}
+.input-custom:hover { 
+  background-color: var(--primaryHover);
+  color: var(--onPrimary);
+}
+#folderNameInput {
+  border: gray 1px solid;
+  outline: none;
+  background-color: var(--background);
+  color: var(--onBackground);
+}
+#folderNameInput:hover {
+  background-color: var(--contentBackground);
+  outline: none;
+}
+
+#fileNameInput::file-selector-button {
+  display: none;
+}

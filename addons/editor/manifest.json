@@ -1,0 +1,37 @@
+{
+    "meta": {
+        "name": "Texteditor",
+        "id": "editor",
+        "preview": "editor/preview",
+        "types": [
+            "text/plain",
+            "text/*"
+        ],
+        "api": [
+            "editor/main"
+        ]
+    },
+    "content": {
+        "serve": [
+            {
+                "type": "javascript",
+                "path": "editor.js",
+                "as": "main"
+            },
+            {
+                "type": "image",
+                "path": "document.png",
+                "as": "preview"
+            }
+        ],
+        "html": {
+            "header": [
+                { "type": "button", "innerText": "Save", "onPress": "main/save" },
+                { "type": "span", "innerText": "Unsaved", "id": "save_status", "class": ["no_background"] }
+            ], 
+            "body": [
+                { "type": "textarea", "id": "text_field", "onLoad": "main/load" }
+            ]
+        }
+    }
+}

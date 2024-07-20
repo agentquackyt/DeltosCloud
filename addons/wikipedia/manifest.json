@@ -1,0 +1,31 @@
+{
+    "meta": {
+        "name": "Wikipedia",
+        "id": "wikipedia",
+        "preview": "wikipedia/preview",
+        "types": [
+            "*"
+        ],
+        "api": [
+            "wikipedia/main"
+        ]
+    },
+    "content": {
+        "serve": [
+            {
+                "type": "javascript",
+                "path": "api.js",
+                "as": "main"
+            }
+        ],
+        "html": {
+            "header": [
+                { "type": "button", "innerText": "Search Wiki", "onPress": "main/search" }
+            ], 
+            "body": [
+                { "type": "input", "content_type":"text", "id": "search_field"},
+                { "type": "div", "id": "answer_field"}
+            ]
+        }
+    }
+}
