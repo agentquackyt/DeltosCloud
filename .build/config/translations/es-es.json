@@ -1,0 +1,11 @@
+{
+    "files": "Archivos",
+    "upload": "Subir",
+    "download": "Descargar",
+    "delete": "Eliminar",
+    "rename": "Renombrar",
+    "copy": "Copiar",
+    "move": "Mover",
+    "folder": "Carpeta",
+    "description_field_1": "Deltos es un servicio en la nube ligero, modular y fácil de usar."
+}

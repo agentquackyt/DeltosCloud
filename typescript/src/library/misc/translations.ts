@@ -3,9 +3,10 @@ import { Output } from "./logger";
 import fs from "fs";
 
 async function getTranslations() {
-    console.log(fs.existsSync(import.meta.dir+"/../../../config/translations"))
+    console.log()
+    console.log(fs.existsSync(process.cwd()+"/config/translations"))
     // @ts-ignore
-    const files = await readdir(import.meta.dir+"/../../../config/translations");
+    const files = await readdir(process.cwd()+"/config/translations");
     let translations = {};
     for (let i = 0; i < files.length; i++) {
         const file = files[i];

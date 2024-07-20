@@ -1,0 +1,11 @@
+{
+    "files": "Files",
+    "upload": "Upload",
+    "download": "Download",
+    "delete": "Delete",
+    "rename": "Rename",
+    "copy": "Copy",
+    "move": "Move",
+    "folder": "Folder",
+    "description_field_1": "Deltos is a lightweight, modular, and easy-to-use cloud service."
+}
