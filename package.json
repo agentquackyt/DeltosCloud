@@ -9,6 +9,7 @@
   "author": "Jonas Gaden",
   "license": "ISC",
   "dependencies": {
+    "@types/bun": "^1.1.6",
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "mongoose": "^7.3.2",
