@@ -1,0 +1,215 @@
+@import url("/res/css/theme.css");
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: row;
+    height: 100dvh;
+    background: var(--background);
+    color: var(--onBackground)
+}
+
+aside {
+    flex: 2;
+    min-width: 250px;
+    height: 100%;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: .5rem;
+}
+
+.title img {
+    max-width: 60px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.title h1 {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+div.options {
+    display: flex;
+    padding: 0 1.25em;
+    padding-top: 5rem;
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .25em;
+    width: 100%;
+}
+
+.navbar-option {
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 20px;
+    color: var(--onPrimary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: 200ms;
+}
+
+.navbar-option .material-symbols-rounded {
+    font-size: 30px !important;
+    margin-right: .5rem;
+
+}
+
+.navbar-option:hover {
+    background-color: var(--primaryHover);
+}
+
+.navbar-option .material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 40
+}
+
+
+
+/*
+    The following CSS is for the layout of the app.
+    The layout is a flexbox with a sidebar and a main content area.
+    The sidebar is 2/15 of the width of the screen and the main content area is 13/15 of the width of the screen.
+    The sidebar has a minimum width of 300px and the main content area has a minimum width of 600px.
+    The main content area is a flexbox with a padding of .75rem.
+    The app has a background of var(--contentBackground) and a color of var(--onContentBackground).
+    The app has a border-radius of 2rem and padding of 1rem.
+*/
+
+/* DEVELOPMENT */
+/*
+* {
+    border: red 1px solid;
+}
+/* */
+
+main {
+    flex: 13;
+    min-width: 400px;
+    height: 100%;
+    display: flex;
+    padding: .75rem;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    background: var(--contentBackground);
+    color: var(--onContentBackground);
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+
+
+/* Mobile Layout */
+
+@media (max-width: 800px) {
+    body {
+        flex-direction: column-reverse;
+    }
+
+    aside {
+        flex: 1;
+        min-width: 100%;
+    }
+
+    main {
+        flex: auto;
+        min-width: 100%;
+        padding: 8px;
+        padding-bottom: 0;
+        margin-top: 50px;
+    }
+
+    #app {
+        border-radius: 1rem;
+        border-bottom-right-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+    }
+
+    .title {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+/*
+    .options * {
+        border: red dotted 1px;
+    }
+*/
+    div.options {
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        height: 100%;
+        user-select: none;
+    }
+
+    .navbar-options {
+        flex-direction: row;
+        gap: .2rem;
+        padding: 0;
+        justify-content: space-between;
+    }
+
+    .navbar-option {
+        padding: .5rem;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+        gap: 7px;
+        text-align: center;
+    }
+
+    .navbar-option .material-symbols-rounded {
+        margin: 0;
+        padding: 2px 15px;
+        border-radius: .5em;
+        transition: 250ms ease-in-out;
+    }
+
+    .navbar-option:hover .material-symbols-rounded {
+        color: var(--onPrimary);
+        background-color: var(--primaryHover);
+    }
+
+    .navbar-option:active .material-symbols-rounded {
+        color: var(--onPrimary);
+        background-color: var(--primaryActive); 
+    }
+
+    .navbar-option:hover {
+        background-color: transparent;
+    }
+
+    .title img {
+        max-width: 40px;
+    }
+}

@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'GoogleSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/res/fonts/GoogleSans.woff") format('woff');
+}
+
+* {
+  font-family: 'GoogleSans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+      --background: #202020;
+      --onBackground: #fff;
+      --contentBackground: #000;
+      --onContentBackground: #fff;
+      --primary: #3b3b3b;
+      --primaryHover: #004878;
+      --primaryActive: #002f5b;
+      --onPrimary: #ffffff;
+    }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root {
+      --background: #edf5ff;
+      --onBackground: #333;
+      --contentBackground: #fff;
+      --onContentBackground: #333;
+      --primary: #e7f0ff;
+      --primaryHover: #aaddff;
+      --primaryActive: #88bbff;
+      --onPrimary: #333;
+    }
+  }
+  

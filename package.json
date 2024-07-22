@@ -1,10 +1,12 @@
 {
   "name": "standupcloud",
   "version": "1.0.0",
-  "description": "StandUpCloud is an open-source Cloud Provider with the ability to expand the functions of the cloud using an addon system",
-  "main": "index.js",
+  "description": "Deltos Cloud is an open-source Cloud Provider with the ability to expand the functions of the cloud using an addon system",
+  "main": "typescript/index.js",
   "scripts": {
-    "test": "node index.js"
+    "dev": "cd typescript && bun --hot index.ts && cd ..",
+    "testbuild": "cd .build && ./DeltosCloud",
+    "build": "cd typescript && bun build ./index.ts --compile --outfile DeltosCloud && mv -f ./DeltosCloud ./../.build/"
   },
   "author": "Jonas Gaden",
   "license": "ISC",

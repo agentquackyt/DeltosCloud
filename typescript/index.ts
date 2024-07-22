@@ -12,6 +12,9 @@ httpServer.use(
         .get("/test/:id", (req, params) => new Response("Test " + params.id))
 );
 
+import resRouter from "./src/routes/res.route";
+httpServer.use(resRouter);
+
 import indexRouter from "./src/routes/index.route";
 httpServer.use(indexRouter);
 
