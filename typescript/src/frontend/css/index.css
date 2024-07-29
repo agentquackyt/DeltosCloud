@@ -1,5 +1,6 @@
 @import url("/res/css/theme.css");
 
+
 body, html {
     margin: 0;
     padding: 0;
@@ -11,11 +12,11 @@ body, html {
     height: 100dvh;
     background: var(--background);
     color: var(--onBackground)
-}
+} 
 
 aside {
     flex: 2;
-    min-width: 250px;
+    min-width: 225px;
     height: 100%;
 }
 
@@ -29,7 +30,7 @@ aside {
 }
 
 .title img {
-    max-width: 60px;
+    max-width: 50px;
     aspect-ratio: 1/1;
     object-fit: cover;
 }
@@ -42,9 +43,50 @@ aside {
 div.options {
     display: flex;
     padding: 0 1.25em;
-    padding-top: 5rem;
     width: 100%;
+    flex-direction: column;
+    padding-top: 2rem;
 }
+
+/* FAB */
+
+.navbar-option.fab {
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    aspect-ratio: 2/1;
+    max-width: 140px;
+    border-radius: 1rem;
+    user-select: none;
+    background-color: var(--primary);
+    transition: .4s cubic-bezier(0.215, 0.610, 0.355, 1);
+    margin-bottom: 3.5rem;
+
+}
+
+.navbar-option.fab .material-symbols-rounded {
+    margin: 0;
+    padding: 2px;
+    margin-right: 15px;
+    border-radius: .5em;
+    transition: 250ms ease-in-out;
+    font-size: 35px !important;
+}
+
+.navbar-option.fab:active {
+    color: var(--onPrimary);
+    background-color: var(--primaryActive); 
+}
+
+.navbar-option.fab:hover {
+    color: var(--onPrimary);
+    background-color: var(--primaryHover);
+}
+
+/* FAB end */
 
 ul {
     list-style-type: none;
@@ -57,7 +99,7 @@ ul {
 }
 
 .navbar-option {
-    font-size: 24px;
+    font-size: larger;
     padding: 10px;
     border-radius: 20px;
     color: var(--onPrimary);
@@ -69,7 +111,7 @@ ul {
 
 .navbar-option .material-symbols-rounded {
     font-size: 30px !important;
-    margin-right: .5rem;
+    margin-right: 1rem;
 
 }
 
@@ -123,7 +165,19 @@ main {
 
 
 
-/* Mobile Layout */
+/* Desktop Layout */
+@media (min-width: 800px) {
+    .material-symbols-rounded {
+        max-width: 30px;
+        overflow: hidden;
+        aspect-ratio: 1/1;
+    }
+
+    .navbar-option.fab .material-symbols-rounded {
+        max-width: 35px;
+    }
+}
+
 
 @media (max-width: 800px) {
     body {
@@ -145,8 +199,6 @@ main {
 
     #app {
         border-radius: 1rem;
-        border-bottom-right-radius: 2rem;
-        border-bottom-left-radius: 2rem;
     }
 
     .title {
@@ -167,13 +219,15 @@ main {
         padding: 0;
         height: 100%;
         user-select: none;
+        flex-direction: row;
     }
 
     .navbar-options {
         flex-direction: row;
-        gap: .2rem;
+        gap: 1.5rem;
         padding: 0;
         justify-content: space-between;
+        width: fit-content;
     }
 
     .navbar-option {
@@ -195,6 +249,12 @@ main {
         transition: 250ms ease-in-out;
     }
 
+    .navbar-option.fab .material-symbols-rounded, .navbar-option.fab:hover .material-symbols-rounded,.navbar-option.fab:active .material-symbols-rounded {
+        margin: 0;
+        padding: 2px 15px;
+        background-color: transparent;
+    }
+
     .navbar-option:hover .material-symbols-rounded {
         color: var(--onPrimary);
         background-color: var(--primaryHover);
@@ -211,5 +271,18 @@ main {
 
     .title img {
         max-width: 40px;
+    }
+
+    li.navbar-option.fab {
+        position: absolute;
+        right: 20px;
+        bottom: 30px;
+        max-width: 70px;
+        max-width: 70px;
+        padding: 0.45rem;
+        aspect-ratio: 1/1 !important;
+    }
+    .fab-des {
+        display: none;
     }
 }
