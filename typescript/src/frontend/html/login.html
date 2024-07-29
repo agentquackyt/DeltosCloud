@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Deltos Login</title>
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #DADCE0;
+            border-radius: 10px;
+            flex-direction: column;
+            padding: 15px;
+            gap: .5rem 1.3rem;
+        }
+
+
+        .login-box h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 25px;
+
+        }
+
+        .login-box x1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+
+        }
+
+
+        .login-box x2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #1A73E8;
+
+        }
+
+        .login-box x3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #1A73E8;
+        }
+
+
+
+        .login-box small {
+            font-family: 'Poppins', sans-serif;
+            color: #5F6368;
+        }
+
+        .login-box span {
+            color: #1A73E8;
+            font-weight: bold;
+        }
+
+        .login-box input {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            width: 400px;
+            height: 50px;
+            background: none;
+            color: inherit;
+            border: 1px solid #DADCE0;
+            border-radius: 3px;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+
+        }
+
+        input::placeholder {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+        }
+
+        .login-box button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1A73E8;
+            height: 40px;
+            width: 85px;
+            font-size: 15px;
+            color: white;
+            outline: none;
+            padding: 0;
+            border: none;
+            border-radius: 5px;
+
+        }
+
+        .login-box button:hover {
+            background-color: #1567D3;
+            -webkit-box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.5);
+            box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.5);
+
+        }
+
+
+        .login-box img {
+
+            width: 150px;
+        }
+    </style>
+
+    <div class="login-box">
+
+        <img src='/res/images/icon.svg'>
+
+        <h1>Sign in</h1>
+        <x1> Use your Deltos Account</x1>
+
+        <form action="/login" method="post" enctype="multipart/form-data">
+
+            <input id="username" type="text" placeHolder="Email or username">
+
+            <input id="password" type="password" placeHolder="Password">
+
+            <x2> Forgot password?</x2>
+
+            <small>Not your computer? Use a private browsing window to sign<br> in.<span> Learn more<span></small>
+
+            <x3> Create Account</x3>
+
+            <button type="submit"> Next </button>
+        </form>
+
+    </div>
+</body>
+
+</html>

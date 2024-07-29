@@ -11,6 +11,9 @@ import indexCss from "../frontend/css/index.css" with { type: "text" };
 // @ts-expect-error
 import iconsCss from "../frontend/css/icons.css" with { type: "text" };
 
+// @ts-expect-error
+import cacheJs from "../frontend/javascript/cache.js" with { type: "text" };
+
 
 const router = new Router("/res")
     .get("/images/:id", async (req, params) => {
@@ -28,7 +31,10 @@ const router = new Router("/res")
         return Response.json({ error: "Style " + params.id + " not found" }, { status: 404 });
     })
     .get("/js/:id", async (req, params) => {
-        return new Response("JS " + params.id);
+        switch (params.id) {
+            case "cache-worker.js": return new Response(cacheJs, { headers: { "Content-Type": "application/javascript" } });
+        }
+        return Response.json({ error: "JavaScript " + params.id + " not found" }, { status: 404 });
     })
     .get("/fonts/:id", async (req, params) => {
         switch (params.id) {
@@ -36,6 +42,7 @@ const router = new Router("/res")
             case "icons.woff2": return new Response(Bun.file(process.cwd()+"/src/frontend/font/icons.woff2"), { headers: { "Content-Type": "font/woff2" }})
         }
         return new Response("Font " + params.id);
-    });
+    })
+    
 
 export default router;

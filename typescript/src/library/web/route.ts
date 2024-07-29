@@ -14,6 +14,7 @@ export interface Route {
 export class Router {
     route: string;
     onError: ((req: Request) => Response) | undefined;
+    middleware: ((req: Request, next: any) => Response) | undefined;
     routes: Route[];
 
     constructor(route: string, onError?: (req: Request) => Response) {
@@ -50,6 +51,7 @@ export class Router {
             }
             if(!isCorrect) continue;
             if (endpoint.method === undefined || endpoint.method === requestMethod) {
+                if(this.middleware != undefined) return this.middleware(req, () => endpoint.callback(req, params));
                 return endpoint.callback(req, params);
             }
         }
@@ -59,6 +61,11 @@ export class Router {
     /*
         Methods
     */
+
+    public use(middleware: (req: Request, next: any) => Response) {
+        this.middleware = middleware;
+        return this;
+    }
 
     public get(url: string, callback: (req: Request, params?: any) => Response | Promise<Response> | boolean): Router {
         if(url.startsWith("/")) url = url.slice(1);

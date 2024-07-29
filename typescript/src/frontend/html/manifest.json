@@ -1,0 +1,16 @@
+{
+  "name": "Deltos Cloud",
+  "short_name": "Deltos",
+  "description": "Deltos Cloud is an open-source Cloud Provider with the ability to expand the functions of the cloud using an addon system",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "icons": [
+    {
+      "src": "/res/images/icon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml"
+    }
+  ]
+}

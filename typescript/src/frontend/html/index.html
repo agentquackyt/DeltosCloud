@@ -2,14 +2,17 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    
     <title>Deltos Cloud</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="shortcut icon" href="/res/images/icon.svg" type="image/svg">
     <link rel="stylesheet" type="text/css" media="screen" href="/res/css/index.css">    
-    <link rel="stylesheet" type="text/css" media="screen" href="/res/css/icons.css">    
+    <link rel="stylesheet" type="text/css" media="screen" href="/res/css/icons.css"> 
+    <link rel="manifest" href="/manifest.json">
+    <!-- Add HTMX localhosted -->
+    <script src="https://unpkg.com/htmx.org@2.0.1"></script>   
 </head>
-<body>
+<body> 
     <aside>
         <div class="title">
             <img src="/res/images/icon.svg" alt="">
@@ -49,5 +52,17 @@
     <main>
         <section id="app"></section>
     </main>
+    <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/res/js/cache-worker.js')
+              .then((registration) => {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+              }, (err) => {
+                console.log('ServiceWorker registration failed: ', err);
+              });
+          });
+        }
+      </script>
 </body>
 </html>
