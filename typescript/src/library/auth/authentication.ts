@@ -13,8 +13,9 @@ export const Authentication = {
             Output.error("User already exists");
             return false;
         }
+        await userDatabase.run("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [username, Bun.password.hashSync(password), email]);
 
-        return await userDatabase.run("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [username, Bun.password.hashSync(password), email]);
+        return Authentication.login(username, password);
     },
     getAccount: async (id: string): Promise<string> => {
         return JSON.stringify(await userDatabase.prepare("SELECT * FROM users WHERE id = ?").get(id));
@@ -66,3 +67,19 @@ export const Authentication = {
     }
 };
 
+export const reCAPTCHA = {
+    validate: async (token: string): Promise<boolean> => {
+        const secret = Bun.env.RECAPTCHA_SECRET || "";
+
+        const formData = new FormData();
+        formData.append("secret", secret);
+        formData.append("response", token);
+        let response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+            method: "POST",
+            body: formData
+        });
+        Output.validation("Validating reCAPTCHA token");
+        let json = await response.json();
+        return json.sucess as boolean;
+    }
+}

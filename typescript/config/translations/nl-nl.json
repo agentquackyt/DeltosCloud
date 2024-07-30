@@ -17,5 +17,11 @@
     "login_email_or_username": "E-mail of Gebruikersnaam",
     "login_password": "Wachtwoord",
     "login_private_window": "Niet jouw computer? Gebruik de privémodus van je browser om veilig in te loggen.",
-    "login_error_message": "Inloggen mislukt. Controleer je gegevens en probeer het opnieuw."
+    "login_error_message": "Inloggen mislukt. Controleer je gegevens en probeer het opnieuw.",
+    
+    "login_username": "Gebruikersnaam",
+    "login_email": "E-mail",
+    "login_password_confirm": "Wachtwoord bevestigen",
+    "login_title_create": "Account aanmaken",
+    "login_subtitle_create": "Maak een nieuw Deltos-account aan"
 }

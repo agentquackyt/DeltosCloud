@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Deltos Login</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         body {
             margin: 0;
@@ -139,29 +140,41 @@
             padding: 15px 7% 0;
             align-items: center;
         }
+        .row.b {
+            padding-top: 1.5rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="login-box">
         <img src='/res/images/icon2.svg'>
-        <h1>@login_title:TRANSLATE</h1>
-        <x1>@login_subtitle:TRANSLATE</x1>
-        <form action="/login" id="login" method="post">
+        <h1>@login_title_create:TRANSLATE</h1>
+        <x1>@login_subtitle_create:TRANSLATE</x1>
+        <form action="/register" id="register" name="register" method="post">
             <div class="column">
-                <input required name="username" type="text" placeholder="@login_email_or_username:TRANSLATE">
+                <input required name="username" type="text" placeholder="@login_username:TRANSLATE">
+                <input required name="email" type="email" placeholder="@login_email:TRANSLATE">
                 <input required name="password" type="password" placeholder="@login_password:TRANSLATE">
-                <a href="/recover">@login_forgot_password:TRANSLATE</a>
             </div>
             <small class="row">@login_private_window:TRANSLATE
             </small>
             <div class="row">
-                <a href="/register" class="button">@login_no_account:TRANSLATE</a>
-                <button type="submit">@login_button:TRANSLATE</button>
+                <div class="g-recaptcha" data-sitekey="6LcQhhsqAAAAAATUulmtz74hgAtINA1LAcFfDogc"></div>
+            </div>
+            <div class="row b">
+                <a href="/login" class="button">@login_button:TRANSLATE</a>
+                <button type="submit">@login_no_account:TRANSLATE</button>
             </div>
 
         </form>
     </div>
+    <script>
+        window.onload = function () {
+            let recaptcha = document.forms["register"]["g-recaptcha-response"];
+            recaptcha.required = true;
+        }
+    </script>
 </body>
 
 </html>

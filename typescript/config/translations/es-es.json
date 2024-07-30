@@ -17,5 +17,11 @@
     "login_email_or_username": "Correo electrónico o nombre de usuario",
     "login_password": "Contraseña",
     "login_private_window": "¿No es tu ordenador? Utiliza el modo privado de tu navegador para iniciar sesión de forma segura.",
-    "login_error_message": "Error de inicio de sesión. Por favor, verifica tus datos e inténtalo de nuevo."
+    "login_error_message": "Error de inicio de sesión. Por favor, verifica tus datos e inténtalo de nuevo.",
+
+    "login_username": "Nombre de usuario",
+    "login_email": "Correo electrónico",
+    "login_password_confirm": "Confirmar contraseña",
+    "login_title_create": "Crear cuenta",
+    "login_subtitle_create": "Crear una nueva cuenta de Deltos"
 }

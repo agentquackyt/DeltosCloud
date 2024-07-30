@@ -17,5 +17,11 @@
     "login_email_or_username": "Email or Username",
     "login_password": "Password",
     "login_private_window": "Not your computer? Use your browser's private mode to log in securely.",
-    "login_error_message": "Login failed. Please check your details and try again."
+    "login_error_message": "Login failed. Please check your details and try again.",
+    
+    "login_username": "Username",
+    "login_email": "Email",
+    "login_password_confirm": "Confirm Password",
+    "login_title_create": "Create Account",
+    "login_subtitle_create": "Create a new Deltos Account"
 }

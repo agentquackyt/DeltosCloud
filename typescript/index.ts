@@ -11,7 +11,6 @@ import { Authentication } from "./src/library/auth/authentication";
 httpServer.use(
     new Router("/test")
         .post("/create", async (req) =>{
-            // @ts-ignore
             const formdata = await req.formData();
 
             if(!formdata.has("email") || !formdata.has("username") || !formdata.has("password")) return new Response("Invalid request: Missing data", {status: 400});

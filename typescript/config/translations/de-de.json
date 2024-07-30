@@ -17,5 +17,11 @@
     "login_email_or_username": "E-Mail oder Benutzername",
     "login_password": "Passwort",
     "login_private_window": "Nicht Ihr Computer? Nutzen Sie den privaten Modus Ihres Browsers, um sich sicher anzumelden.",
-    "login_error_message": "Die Anmeldung ist fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut."
+    "login_error_message": "Die Anmeldung ist fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.",
+
+    "login_username": "Benutzername",
+    "login_email": "E-Mail",
+    "login_password_confirm": "Passwort bestätigen",
+    "login_title_create": "Account erstellen",
+    "login_subtitle_create": "Erstellen Sie einen neuen Deltos Account"
 }

@@ -19,6 +19,9 @@ export const Output = {
     ws: (message: string) => {
         if (development) console.log(Color.bold + Color.green + "WS " + Color.reset + message)
     },
+    validation: (message: string) => {
+        if (development) console.log(Color.bold + Color.magenta + "[Validation] " + Color.reset + message)
+    },
     debug: (message: any) => {
         if (!development) return;
         console.log(Color.bold + Color.magenta + "[debug] " + Color.reset);
