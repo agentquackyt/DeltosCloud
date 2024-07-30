@@ -1,11 +1,19 @@
 import { Database } from "bun:sqlite";
 import { Output } from "../misc/logger";
 import { JWT } from "./jwt";
+import { get } from "mongoose";
 
 const userDatabase = new Database(process.cwd()+"/config/database/users.sqlite", { create: true});
 
 //  create prompt to create table users with an unique username and password and an unique IDID
 await userDatabase.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, email TEXT UNIQUE, password TEXT)");
+
+export type User = {
+    id: number,
+    username: string,
+    email: string,
+    password: string
+};
 
 export const Authentication = {
     createAccount: async (username: string, password: string, email: string) => {
@@ -17,8 +25,8 @@ export const Authentication = {
 
         return Authentication.login(username, password);
     },
-    getAccount: async (id: string): Promise<string> => {
-        return JSON.stringify(await userDatabase.prepare("SELECT * FROM users WHERE id = ?").get(id));
+    getAccount: async (id: number): Promise<User> => {
+        return userDatabase.prepare("SELECT * FROM users WHERE id = ?").get(id) as User;
     },
     verifyAccount: async (username: string, password: string): Promise<boolean> => {
         let user: any = await userDatabase.prepare("SELECT * FROM users WHERE username = ?").get(username);
@@ -59,11 +67,17 @@ export const Authentication = {
 
         return JWT.verify(cookies["token"]);
     },
-    getUserFromJWT: async (req: Request): Promise<Object | boolean> => {
+    getUserFromJWT: async (req: Request): Promise<User | boolean> => {
         if(await Authentication.verifyJWT(req) == false) return false;
-        
-        
-        return true;
+        const cookies = {};
+        req.headers.get("cookie")?.split(";").forEach((cookie: string) => {
+            let [key, value] = cookie.split("=");
+            cookies[key.trim()] = value;
+        });
+        if(cookies["token"] == undefined) return false;
+    
+        const { sub } = JWT.payloadFromToken(cookies["token"]) as { sub: number, name: string };
+        return Authentication.getAccount(sub);
     }
 };
 

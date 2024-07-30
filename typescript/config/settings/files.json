@@ -1,0 +1,8 @@
+{
+    "$info": "This file contains the paths for the files and folders used in the project, Folder Paths must be relative to the root of the project",
+    "folder_path_for_upload": "/uploads",
+    "folder_paths_list": [
+        "/uploads",
+        "/src/frontend/font"
+    ]
+}

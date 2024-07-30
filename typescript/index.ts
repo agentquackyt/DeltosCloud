@@ -10,47 +10,20 @@ import { Authentication } from "./src/library/auth/authentication";
 
 httpServer.use(
     new Router("/test")
-        .post("/create", async (req) =>{
-            const formdata = await req.formData();
-
-            if(!formdata.has("email") || !formdata.has("username") || !formdata.has("password")) return new Response("Invalid request: Missing data", {status: 400});
-            const username = formdata.get("username") as string;
-            const email = formdata.get("email") as string;
-            const password = formdata.get("password") as string;
-            console.log(username, password);
-            let account = await Authentication.createAccount(username, password, email);
-            console.log(account);
-            if(account == false) return new Response("User already exists", {status: 400});
-            return new Response("Account created");
-        })
         .get("/get/:id", async (req, params) => {
             let {id} = params;
-            return new Response(await Authentication.getAccount(id));
+            return new Response(JSON.stringify(await Authentication.getAccount(id)));
         })
-        .post("/login", async (req, params) => {
-            const formdata = await req.formData();
+        .get("/get", async (req) => {
+            // Get using JWT
+            let response = await Authentication.getUserFromJWT(req);
 
-            const username = formdata.get("username") as string;
-            const password = formdata.get("password") as string;
-            let tokenPromise = await Authentication.login(username, password);
-            if(tokenPromise == false) return new Response(JSON.stringify({ error: "Invalid username or password"}), {status: 401});
-            // @ts-ignore
-            let {token, timestamp} = tokenPromise;
-            return new Response(JSON.stringify({ token}), {
-                headers: {
-                    "Content-Type": "application/json", 
-                    "Set-Cookie": "token="+token+"; expires="+new Date(timestamp).toUTCString()
-                }
-            });
-        })
-        .post("/verify", async (req, params) => {
-            const formdata = await req.formData();
-
-            const username = formdata.get("username") as string;
-            const password = formdata.get("password") as string;
-            return new Response(JSON.stringify({ verified: await Authentication.verifyAccount(username, password)}));
+            return new Response(JSON.stringify(response));
         })
 );
+
+import apiHtmxRouter from "./src/routes/api-htmx.route";
+httpServer.use(apiHtmxRouter);
 
 import resRouter from "./src/routes/res.route";
 httpServer.use(resRouter);

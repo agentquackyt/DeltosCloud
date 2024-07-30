@@ -14,6 +14,8 @@ import iconsCss from "../frontend/css/icons.css" with { type: "text" };
 
 // @ts-expect-error
 import cacheJs from "../frontend/javascript/cache.js" with { type: "text" };
+// @ts-expect-error
+import indexJs from "../frontend/javascript/index.js" with { type: "text" };
 
 
 const router = new Router("/res")
@@ -35,6 +37,7 @@ const router = new Router("/res")
     .get("/js/:id", async (req, params) => {
         switch (params.id) {
             case "cache-worker.js": return new Response(cacheJs, { headers: { "Content-Type": "application/javascript" } });
+            case "index.js": return new Response(indexJs, { headers: { "Content-Type": "application/javascript" } });
         }
         return Response.json({ error: "JavaScript " + params.id + " not found" }, { status: 404 });
     })

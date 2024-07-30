@@ -19,7 +19,7 @@
             <h1>Deltos Cloud</h1>
         </div>
         <div class="options">
-            <li class="navbar-option fab">
+            <li class="navbar-option fab" onclick="javascript:Prompts.uploadDialog()">
                 <span class="material-symbols-rounded">upload</span>
                 <span class="fab-des">Upload</span>
             </li>
@@ -50,8 +50,18 @@
         </div>
     </aside>
     <main>
-        <section id="app"></section>
+        <section id="app" hx-trigger="load" hx-swap="innerHTML" hx-target="#app" hx-get="/api/htmx/files.html">
+
+        </section>
+        <div id="snackbar">
+            <span>File uploaded successfully</span>
+        </div>
     </main>
+    <section id="prompt" data-prompt="">
+        <div id="prompt-window">
+            
+        </div>
+    </section>
     <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
@@ -64,5 +74,6 @@
           });
         }
       </script>
+      <script src="/res/js/index.js"></script>
 </body>
 </html>

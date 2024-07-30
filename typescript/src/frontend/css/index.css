@@ -64,7 +64,8 @@ div.options {
     background-color: var(--primary);
     transition: .4s cubic-bezier(0.215, 0.610, 0.355, 1);
     margin-bottom: 3.5rem;
-
+    z-index: 99;
+    box-shadow: 0 0 5px 0 var(--promptShadow);
 }
 
 .navbar-option.fab .material-symbols-rounded {
@@ -152,6 +153,9 @@ main {
     height: 100%;
     display: flex;
     padding: .75rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #app {
@@ -285,4 +289,77 @@ main {
     .fab-des {
         display: none;
     }
+}
+
+/* Prompts */
+#prompt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--promptShadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    display: none;
+}
+
+#snackbar {
+    position: absolute;
+    bottom: 30px;
+    width: 400px;
+    max-width: 80%;
+    background: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 98;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 0 var(--promptShadow);
+
+    border-radius: .5rem;
+    padding: .7rem 2rem;
+    display: none;
+    transition: opacity .5s cubic-bezier(0.215, 0.610, 0.355, 1);
+    transform: translateY(50px);
+}
+
+@keyframes snackbar-animation {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    5% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    95% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    
+}
+
+#snackbar.show {
+    display: flex;
+    animation: snackbar-animation 2s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+
+@media screen and (max-width: 800px) {
+    #snackbar {
+        bottom: 80px;
+    }
+    
 }

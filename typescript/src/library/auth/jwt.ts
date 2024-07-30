@@ -28,5 +28,22 @@ export const JWT = {
         hasher.update(JWT.settings.secret);
         let expectedSignature = base64url_encode(hasher.digest("base64"));
         return signature === expectedSignature;
+    },
+    payloadFromToken: (token) => {
+        let payload = token.split(".")[1];
+        return JSON.parse(base64URLdecode(payload));
     }
+}
+
+function base64URLdecode(str) {
+    const base64Encoded = str.replace(/-/g, '+').replace(/_/g, '/');
+    const padding = str.length % 4 === 0 ? '' : '='.repeat(4 - (str.length % 4));
+    const base64WithPadding = base64Encoded + padding;
+    return atob(base64WithPadding);
+  }
+
+export function SHA256_to_HEX(data) {
+    const hasher = new Bun.CryptoHasher("sha256");
+    hasher.update(data);
+    return hasher.digest("hex");
 }

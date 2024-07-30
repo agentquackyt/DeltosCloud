@@ -18,6 +18,16 @@ const router = new Router("/")
     .get("/login", async (req) => {
         return new Response(await translateString({ file: loginHtml, req }), contentType);
     })
+    .get("/logout", async (req) => {
+        return new Response(JSON.stringify(["Logging out ... "]), {
+            status: 301,
+            headers: {
+                "Content-Type": "application/json",
+                "Set-Cookie": "token=; expires=" + new Date(0).toUTCString(),
+                "Location": "/login"
+            }
+        });
+    })
     .get("/register", async (req) => {
         return new Response(await translateString({ file: registerHtml, req }), contentType);
     })
