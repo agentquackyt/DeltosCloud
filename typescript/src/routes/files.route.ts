@@ -2,13 +2,12 @@ import { Router } from "../library/web/route";
 import { contentType, translateString } from "../library/web/htmlViewEngine";
 // @ts-expect-error
 import filesModuleHtml from "../frontend/modules/files.html" with { type: "text" };
+import { Authentication } from "../library/auth/authentication";
 
 
 const router = new Router("/files")
-    .use((req, next) => {
-        // validate login here
-        console.log("Files route middleware : "+req.mode);
-
+    .use(async (req, next) => {
+        if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
         return next();
     })
     .get("/", async (req) => {

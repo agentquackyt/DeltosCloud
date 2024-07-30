@@ -14,12 +14,14 @@ httpServer.use(
             // @ts-ignore
             const formdata = await req.formData();
 
+            if(!formdata.has("email") || !formdata.has("username") || !formdata.has("password")) return new Response("Invalid request: Missing data", {status: 400});
             const username = formdata.get("username") as string;
             const email = formdata.get("email") as string;
             const password = formdata.get("password") as string;
             console.log(username, password);
             let account = await Authentication.createAccount(username, password, email);
             console.log(account);
+            if(account == false) return new Response("User already exists", {status: 400});
             return new Response("Account created");
         })
         .get("/get/:id", async (req, params) => {

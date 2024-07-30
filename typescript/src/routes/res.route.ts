@@ -1,7 +1,8 @@
 import { Router } from "../library/web/route";
 // @ts-expect-error
 import iconSvg from "../frontend/images/icon.svg" with { type: "text" };
-
+// @ts-expect-error
+import icon2Svg from "../frontend/images/icon2.svg" with { type: "text" };
 //style
 
 // @ts-expect-error
@@ -18,7 +19,8 @@ import cacheJs from "../frontend/javascript/cache.js" with { type: "text" };
 const router = new Router("/res")
     .get("/images/:id", async (req, params) => {
         switch (params.id) {
-            case "icon.svg": return new Response(iconSvg, { headers: { "Content-Type": "image/svg+xml" } });
+            case "icon.svg": return new Response(icon2Svg, { headers: { "Content-Type": "image/svg+xml" } });
+            case "icon2.svg": return new Response(iconSvg, { headers: { "Content-Type": "image/svg+xml" } });
         }
         return new Response("Image " + params.id);
     })

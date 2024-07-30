@@ -2,19 +2,10 @@ import { Database } from "bun:sqlite";
 import { Output } from "../misc/logger";
 import { JWT } from "./jwt";
 
-const loginDatabase = new Database(":memory:");
 const userDatabase = new Database(process.cwd()+"/config/database/users.sqlite", { create: true});
 
 //  create prompt to create table users with an unique username and password and an unique IDID
 await userDatabase.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, email TEXT UNIQUE, password TEXT)");
-
-/*
-JWT Token
-*/
-const jwt_header = JSON.stringify({
-    alg: "HS256",
-    typ: "JWT"
-});
 
 export const Authentication = {
     createAccount: async (username: string, password: string, email: string) => {
@@ -23,7 +14,7 @@ export const Authentication = {
             return false;
         }
 
-        return await userDatabase.run("INSERT INTO users (username, password) VALUES (?, ?)", [username, Bun.password.hashSync(password)]);
+        return await userDatabase.run("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [username, Bun.password.hashSync(password), email]);
     },
     getAccount: async (id: string): Promise<string> => {
         return JSON.stringify(await userDatabase.prepare("SELECT * FROM users WHERE id = ?").get(id));
@@ -39,8 +30,11 @@ export const Authentication = {
      * @param username username OR email
      */
     login: async (username: string, password: string): Promise<Object | boolean> => {
-        let user: any = await userDatabase.prepare("SELECT * FROM users WHERE username = ? OR email = ?").get(username, username);
-        if(user == undefined) return false;
+        let user: any = await userDatabase.prepare("SELECT * FROM users WHERE username = $username OR email = $username").get({$username: username});
+        if(user == undefined) {
+            Output.error("User does not exist");
+            return false
+        };
 
         if(!(await Bun.password.verify(password, user.password))) return false;
         // Create JWT token without libary
@@ -52,6 +46,17 @@ export const Authentication = {
         }
         
         return {token: JWT.sign(payload), timestamp };
+    },
+    verifyJWT: async (req: Request): Promise<boolean> => {
+        const cookies = {};
+        req.headers.get("cookie")?.split(";").forEach((cookie: string) => {
+            let [key, value] = cookie.split("=");
+            cookies[key.trim()] = value;
+        });
+
+        if(cookies["token"] == undefined) return false;
+
+        return JWT.verify(cookies["token"]);
     }
 };
 

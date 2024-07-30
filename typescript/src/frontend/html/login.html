@@ -3,14 +3,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
     <title>Deltos Login</title>
-</head>
-
-<body>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
         body {
             margin: 0;
@@ -27,43 +22,35 @@
             justify-content: center;
             align-items: center;
             border: 1px solid #DADCE0;
-            border-radius: 10px;
+            border-radius: 15px;
             flex-direction: column;
             padding: 15px;
-            gap: .5rem 1.3rem;
+            gap: 0.5rem 1.3rem;
         }
 
+        @media screen and (max-width: 600px) {
+            .login-box {
+                width: 100%;
+                border: none;
+            }
+            
+            form {
+                margin-top: 4rem;
+            }
+        }
 
         .login-box h1 {
-            font-family: 'Poppins', sans-serif;
             font-size: 25px;
-
+            margin-bottom: 0;
         }
 
-        .login-box x1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-
-        }
-
-
-        .login-box x2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
+        .login-box a {
+            font-size: 0.8em;
             color: #1A73E8;
-
+            text-decoration: none;
         }
-
-        .login-box x3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            color: #1A73E8;
-        }
-
-
 
         .login-box small {
-            font-family: 'Poppins', sans-serif;
             color: #5F6368;
         }
 
@@ -73,9 +60,7 @@
         }
 
         .login-box input {
-            font-family: 'Poppins', sans-serif;
             font-size: 20px;
-            width: 400px;
             height: 50px;
             background: none;
             color: inherit;
@@ -85,64 +70,88 @@
             font: inherit;
             cursor: pointer;
             outline: inherit;
-
         }
 
         input::placeholder {
-            font-family: 'Poppins', sans-serif;
             font-size: 15px;
         }
 
-        .login-box button {
-            font-family: 'Poppins', sans-serif;
+        .login-box button, .login-box a.button {
             background-color: #1A73E8;
-            height: 40px;
-            width: 85px;
-            font-size: 15px;
+            font-size: 0.8em;
             color: white;
             outline: none;
-            padding: 0;
             border: none;
             border-radius: 5px;
+            padding: 8px 15px;
+            transition: 250ms ease;
+            text-decoration: none;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
 
         }
+        .login-box a.button {
+            background-color: transparent;
+            color: #1A73E8;
+        }
+
 
         .login-box button:hover {
             background-color: #1567D3;
-            -webkit-box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.5);
-            box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.5);
-
+            -webkit-box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.072);
+            box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.098);
+        }
+        .login-box a.button:hover {
+            background-color: #eef3fb;
+            color: #1A73E8;
+            -webkit-box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.072);
+            box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.098);
         }
 
+        .login-box a.button:active {
+            background-color: #d2e3fc;
+            -webkit-box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.072);
+            box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.098);
+        }
 
         .login-box img {
-
-            width: 150px;
+            width: 160px;
+            margin: .5rem 0;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            padding: 0 7% 0;
+            gap: 15px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 7% 0;
+            align-items: center;
         }
     </style>
+</head>
 
+<body>
     <div class="login-box">
-
-        <img src='/res/images/icon.svg'>
-
+        <img src='/res/images/icon2.svg'>
         <h1>Sign in</h1>
-        <x1> Use your Deltos Account</x1>
+        <x1>Use your Deltos Account</x1>
+        <form action="/login" id="login" method="post">
+            <div class="column">
+                <input name="username" type="text" placeholder="Email or username">
+                <input name="password" type="password" placeholder="Password">
+                <a href="/recover">Forgot password?</a>
+            </div>
+            <small class="row">Not your computer? Use a private browsing window to sign in.
+            </small>
+            <div class="row">
+                <a href="/create" class="button">Create Account</a>
+                <button type="submit">Next</button>
+            </div>
 
-        <form action="/login" method="post" enctype="multipart/form-data">
-
-            <input id="username" type="text" placeHolder="Email or username">
-
-            <input id="password" type="password" placeHolder="Password">
-
-            <x2> Forgot password?</x2>
-
-            <small>Not your computer? Use a private browsing window to sign<br> in.<span> Learn more<span></small>
-
-            <x3> Create Account</x3>
-
-            <button type="submit"> Next </button>
         </form>
-
     </div>
 </body>
 

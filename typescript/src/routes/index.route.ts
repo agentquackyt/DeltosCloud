@@ -10,8 +10,7 @@ import { Authentication } from "../library/auth/authentication";
 
 const router = new Router("/")
     .get("/", async (req) => {
-        // validate login here
-
+        if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
         return new Response(await translateString({ file: indexHtml, req }), contentType);
     })
     .get("/login", async (req) => {
@@ -26,9 +25,11 @@ const router = new Router("/")
         // @ts-ignore
         let { token, timestamp } = tokenPromise;
         return new Response(JSON.stringify({ token }), {
+            status: 301,
             headers: {
                 "Content-Type": "application/json",
-                "Set-Cookie": "token=" + token + "; expires=" + new Date(timestamp).toUTCString()
+                "Set-Cookie": "token=" + token + "; expires=" + new Date(timestamp).toUTCString(),
+                "Location": "/"
             }
         });
     })

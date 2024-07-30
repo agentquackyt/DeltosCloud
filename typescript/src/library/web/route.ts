@@ -14,7 +14,7 @@ export interface Route {
 export class Router {
     route: string;
     onError: ((req: Request) => Response) | undefined;
-    middleware: ((req: Request, next: any) => Response) | undefined;
+    middleware: ((req: Request, next: any) => Response | Promise<Response>) | undefined;
     routes: Route[];
 
     constructor(route: string, onError?: (req: Request) => Response) {
@@ -62,7 +62,7 @@ export class Router {
         Methods
     */
 
-    public use(middleware: (req: Request, next: any) => Response) {
+    public use(middleware: (req: Request, next: any) => Response | Promise<Response> ): Router {
         this.middleware = middleware;
         return this;
     }
