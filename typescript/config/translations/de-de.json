@@ -7,5 +7,15 @@
     "copy": "Kopieren",
     "move": "Verschieben",
     "folder": "Ordner",
-    "description_field_1": "Deltos ist ein leichtgewichtiger, modularer und einfach zu bedienender Cloud-Dienst."
+    "description_field_1": "Deltos ist ein leichtgewichtiger, modularer und einfach zu bedienender Cloud-Dienst.",
+
+    "login_title": "Anmelden",
+    "login_subtitle": "Mit Ihrem Deltos Account anmelden",
+    "login_forgot_password": "Passwort vergessen?",
+    "login_button": "Anmelden",
+    "login_no_account": "Account erstellen",
+    "login_email_or_username": "E-Mail oder Benutzername",
+    "login_password": "Passwort",
+    "login_private_window": "Nicht Ihr Computer? Nutzen Sie den privaten Modus Ihres Browsers, um sich sicher anzumelden.",
+    "login_error_message": "Die Anmeldung ist fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut."
 }

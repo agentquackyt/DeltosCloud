@@ -7,5 +7,15 @@
     "copy": "Copiar",
     "move": "Mover",
     "folder": "Pasta",
-    "description_field_1": "Deltos é um serviço em nuvem leve, modular e fácil de usar."
+    "description_field_1": "Deltos é um serviço em nuvem leve, modular e fácil de usar.",
+
+    "login_title": "Entrar",
+    "login_subtitle": "Entre com sua conta Deltos",
+    "login_forgot_password": "Esqueceu a senha?",
+    "login_button": "Entrar",
+    "login_no_account": "Criar conta",
+    "login_email_or_username": "Email ou Nome de usuário",
+    "login_password": "Senha",
+    "login_private_window": "Não é o seu computador? Use o modo privado do seu navegador para entrar com segurança.",
+    "login_error_message": "Falha ao entrar. Por favor, verifique seus dados e tente novamente."
 }

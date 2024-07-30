@@ -6,7 +6,6 @@
     <title>Deltos Login</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap">
     <style>
-
         body {
             margin: 0;
             padding: 0;
@@ -26,6 +25,11 @@
             flex-direction: column;
             padding: 15px;
             gap: 0.5rem 1.3rem;
+            max-width: 450px;
+        }
+
+        form {
+            margin-top: 1rem;
         }
 
         @media screen and (max-width: 600px) {
@@ -33,7 +37,7 @@
                 width: 100%;
                 border: none;
             }
-            
+
             form {
                 margin-top: 4rem;
             }
@@ -66,7 +70,7 @@
             color: inherit;
             border: 1px solid #DADCE0;
             border-radius: 3px;
-            padding: 0;
+            padding: 0 8px;
             font: inherit;
             cursor: pointer;
             outline: inherit;
@@ -76,7 +80,8 @@
             font-size: 15px;
         }
 
-        .login-box button, .login-box a.button {
+        .login-box button,
+        .login-box a.button {
             background-color: #1A73E8;
             font-size: 0.8em;
             color: white;
@@ -90,6 +95,7 @@
             font-family: 'Poppins', sans-serif;
 
         }
+
         .login-box a.button {
             background-color: transparent;
             color: #1A73E8;
@@ -101,6 +107,7 @@
             -webkit-box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.072);
             box-shadow: 5px 6px 12px -6px rgba(0, 0, 0, 0.098);
         }
+
         .login-box a.button:hover {
             background-color: #eef3fb;
             color: #1A73E8;
@@ -118,12 +125,14 @@
             width: 160px;
             margin: .5rem 0;
         }
+
         .column {
             display: flex;
             flex-direction: column;
             padding: 0 7% 0;
             gap: 15px;
         }
+
         .row {
             display: flex;
             justify-content: space-between;
@@ -136,19 +145,19 @@
 <body>
     <div class="login-box">
         <img src='/res/images/icon2.svg'>
-        <h1>Sign in</h1>
-        <x1>Use your Deltos Account</x1>
+        <h1>@login_title:TRANSLATE</h1>
+        <x1>@login_subtitle:TRANSLATE</x1>
         <form action="/login" id="login" method="post">
             <div class="column">
-                <input name="username" type="text" placeholder="Email or username">
-                <input name="password" type="password" placeholder="Password">
-                <a href="/recover">Forgot password?</a>
+                <input name="username" type="text" placeholder="@login_email_or_username:TRANSLATE">
+                <input name="password" type="password" placeholder="@login_password:TRANSLATE">
+                <a href="/recover">@login_forgot_password:TRANSLATE</a>
             </div>
-            <small class="row">Not your computer? Use a private browsing window to sign in.
+            <small class="row">@login_private_window:TRANSLATE
             </small>
             <div class="row">
-                <a href="/create" class="button">Create Account</a>
-                <button type="submit">Next</button>
+                <a href="/create" class="button">@login_no_account:TRANSLATE</a>
+                <button type="submit">@login_button:TRANSLATE</button>
             </div>
 
         </form>

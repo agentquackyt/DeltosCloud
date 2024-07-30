@@ -1,0 +1,21 @@
+{
+    "files": "Bestanden",
+    "upload": "Uploaden",
+    "download": "Downloaden",
+    "delete": "Verwijderen",
+    "rename": "Hernoemen",
+    "copy": "Kopiëren",
+    "move": "Verplaatsen",
+    "folder": "Map",
+    "description_field_1": "Deltos is een lichte, modulaire en gebruiksvriendelijke clouddienst.",
+    
+    "login_title": "Inloggen",
+    "login_subtitle": "Log in met je Deltos-account",
+    "login_forgot_password": "Wachtwoord vergeten?",
+    "login_button": "Inloggen",
+    "login_no_account": "Account aanmaken",
+    "login_email_or_username": "E-mail of Gebruikersnaam",
+    "login_password": "Wachtwoord",
+    "login_private_window": "Niet jouw computer? Gebruik de privémodus van je browser om veilig in te loggen.",
+    "login_error_message": "Inloggen mislukt. Controleer je gegevens en probeer het opnieuw."
+}

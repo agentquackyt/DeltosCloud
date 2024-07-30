@@ -57,6 +57,12 @@ export const Authentication = {
         if(cookies["token"] == undefined) return false;
 
         return JWT.verify(cookies["token"]);
+    },
+    getUserFromJWT: async (req: Request): Promise<Object | boolean> => {
+        if(await Authentication.verifyJWT(req) == false) return false;
+        
+        
+        return true;
     }
 };
 
