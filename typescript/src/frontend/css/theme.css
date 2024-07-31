@@ -21,6 +21,11 @@
       --primary: #3b3b3b;
       --primaryHover: #004878;
       --primaryActive: #002f5b;
+      
+      --secondary: #4a4a4a;
+      --secondaryHover: #005c99;
+      --secondaryActive: #004789;
+
       --onPrimary: #ffffff;
       --promptShadow: rgba(0, 0, 0, .5);
     }

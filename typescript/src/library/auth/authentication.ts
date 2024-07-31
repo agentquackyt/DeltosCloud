@@ -78,6 +78,18 @@ export const Authentication = {
     
         const { sub } = JWT.payloadFromToken(cookies["token"]) as { sub: number, name: string };
         return Authentication.getAccount(sub);
+    },
+    getUserIdFromJWT: async (req: Request): Promise<number | boolean> => {
+        if(await Authentication.verifyJWT(req) == false) return false;
+        const cookies = {};
+        req.headers.get("cookie")?.split(";").forEach((cookie: string) => {
+            let [key, value] = cookie.split("=");
+            cookies[key.trim()] = value;
+        });
+        if(cookies["token"] == undefined) return false;
+    
+        const { sub } = JWT.payloadFromToken(cookies["token"]) as { sub: number, name: string };
+        return sub;
     }
 };
 

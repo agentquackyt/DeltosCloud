@@ -1,7 +1,8 @@
 @import url("/res/css/theme.css");
 
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -12,7 +13,7 @@ body, html {
     height: 100dvh;
     background: var(--background);
     color: var(--onBackground)
-} 
+}
 
 aside {
     flex: 2;
@@ -79,7 +80,7 @@ div.options {
 
 .navbar-option.fab:active {
     color: var(--onPrimary);
-    background-color: var(--primaryActive); 
+    background-color: var(--primaryActive);
 }
 
 .navbar-option.fab:hover {
@@ -121,11 +122,11 @@ ul {
 }
 
 .navbar-option .material-symbols-rounded {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 40
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 40
 }
 
 
@@ -152,10 +153,11 @@ main {
     min-width: 400px;
     height: 100%;
     display: flex;
-    padding: .75rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-right: 0.75rem;
+    overflow: hidden;
 }
 
 #app {
@@ -165,6 +167,9 @@ main {
     color: var(--onContentBackground);
     border-radius: 2rem;
     padding: 1rem;
+    margin: .75rem;
+    margin-top: 0;
+    overflow-y: auto;
 }
 
 
@@ -203,6 +208,7 @@ main {
 
     #app {
         border-radius: 1rem;
+        margin-bottom: 0;
     }
 
     .title {
@@ -212,7 +218,8 @@ main {
         left: 0;
         right: 0;
     }
-/*
+
+    /*
     .options * {
         border: red dotted 1px;
     }
@@ -253,7 +260,9 @@ main {
         transition: 250ms ease-in-out;
     }
 
-    .navbar-option.fab .material-symbols-rounded, .navbar-option.fab:hover .material-symbols-rounded,.navbar-option.fab:active .material-symbols-rounded {
+    .navbar-option.fab .material-symbols-rounded,
+    .navbar-option.fab:hover .material-symbols-rounded,
+    .navbar-option.fab:active .material-symbols-rounded {
         margin: 0;
         padding: 2px 15px;
         background-color: transparent;
@@ -266,7 +275,7 @@ main {
 
     .navbar-option:active .material-symbols-rounded {
         color: var(--onPrimary);
-        background-color: var(--primaryActive); 
+        background-color: var(--primaryActive);
     }
 
     .navbar-option:hover {
@@ -286,6 +295,7 @@ main {
         padding: 0.45rem;
         aspect-ratio: 1/1 !important;
     }
+
     .fab-des {
         display: none;
     }
@@ -331,22 +341,33 @@ main {
         opacity: 0;
         transform: translateY(15px);
     }
+
     5% {
         opacity: 1;
         transform: translateY(0);
     }
+
     95% {
         opacity: 1;
         transform: translateY(0);
     }
+
     99% {
         opacity: 0;
     }
+
     100% {
         opacity: 0;
         transform: translateY(15px);
     }
-    
+
+}
+
+main>h2 {
+    text-align: left;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
 }
 
 #snackbar.show {
@@ -361,5 +382,108 @@ main {
     #snackbar {
         bottom: 80px;
     }
-    
+
+    main>h2 {
+        padding: .5rem;
+        padding-top: 0;
+    }
+}
+
+.navbar-options {
+    user-select: none;
+}
+
+/* Files and folders */
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: .75rem 0 ;
+    align-items: center;
+}
+
+.file-card {
+    background-color: var(--primary);
+    color: var(--onPrimary);
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    min-width: 250px;
+    max-width: 300px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    gap: 10px;
+    transition: 250ms ease;
+    user-select: none;
+}
+
+.file-card.folder {
+    aspect-ratio: 3/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-card:hover {
+    background-color: var(--primaryHover);
+}
+
+.file-card:hover .preview-image {
+    background-color: var(--secondaryHover);
+}
+
+.file-card:active {
+    background-color: var(--primaryActive);
+}
+
+.file-card:active .preview-image {
+    background-color: var(--secondaryActive);
+}
+
+.preview-image {
+    aspect-ratio: 3/2;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary);
+    transition: 250ms ease;
+
+}
+
+.preview-image img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    aspect-ratio: 3/2;
+}
+
+
+.file-name {
+    text-align: center;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+@media screen and (max-width: 800px) and (min-width: 600px) {
+    /* Files and folders */
+    .item-list {
+        display: flex;
+    }
+
+    .file-card {
+        max-width: 45%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .file-card {
+        max-width: 100%;
+    }
+
+    .preview-image, .preview-image img {
+        aspect-ratio: 7/4;
+    }
 }

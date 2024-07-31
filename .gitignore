@@ -2,3 +2,5 @@
 /data_storage
 /.build
 /.idea
+/typescript/uploads
+/typescript/config/database
