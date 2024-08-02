@@ -1,7 +1,7 @@
 
 // index.js
 window.addEventListener('load', load);
-htmx.get('#app').addEventListener('htmx:afterSwap', updateTitle);
+document.getElementById('app').addEventListener('htmx:afterSwap', updateTitle);
 
 async function updateTitle() {
     if (location.pathname.startsWith('/f/')) {
@@ -10,6 +10,17 @@ async function updateTitle() {
         let response = await fetch('/files/api/folder/id', { method: 'POST', body: formData })
         let { name } = await response.json();
         document.getElementById('app-title').innerText = name;
+        document.title = 'Deltos Cloud | ' + name;
+    } else if (location.pathname.startsWith('/v/')) {
+        let formData = new FormData();
+        formData.append('fileId', location.pathname.split("/").pop());
+        let response = await fetch('/files/api/file/id', { method: 'POST', body: formData })
+        let { name } = await response.json();
+        document.getElementById('app-title').innerText = name;
+        document.title = 'Deltos Cloud | ' + name;
+    } else {
+        document.getElementById('app-title').innerText = "Home";
+        document.title = 'Deltos Cloud';
     }
 }
 
@@ -18,6 +29,9 @@ async function load() {
     if (location.pathname.startsWith('/f/')) {
         await updateTitle();
         return htmx.ajax('GET', '/api/htmx/files/list.html?folder=' + location.pathname.split("/").pop(), { target: '#app', swap: 'innerHTML' })
+    } else if (location.pathname.startsWith('/v/')) {
+        await updateTitle();
+        return htmx.ajax('GET', '/api/htmx/files/view.html?file=' + location.pathname.split("/").pop(), { target: '#app', swap: 'innerHTML' })
     }
     return htmx.ajax('GET', '/api/htmx/files/list.html', { target: '#app', swap: 'innerHTML' })
 }
@@ -42,14 +56,14 @@ const Prompts = {
             files.forEach(async file => {
                 let formData = new FormData();
                 formData.append('file', file);
-                if(location.pathname.startsWith('/f/')) {
+                if (location.pathname.startsWith('/f/')) {
                     formData.append('folder', location.pathname.split("/").pop());
                 }
                 let response = await fetch('/files/api/file', {
                     method: 'POST',
                     body: formData
                 })
-                
+
                 if (response.ok) {
                     Prompts.showSnackbar('Uploaded file');
                 } else {
@@ -74,4 +88,3 @@ const Prompts = {
         }, 2000);
     }
 }
-

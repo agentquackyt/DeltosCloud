@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
-    
+
     <title>Deltos Cloud</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="shortcut icon" href="/res/images/icon.svg" type="image/svg">
-    <link rel="stylesheet" type="text/css" media="screen" href="/res/css/index.css">    
-    <link rel="stylesheet" type="text/css" media="screen" href="/res/css/icons.css"> 
+    <link rel="stylesheet" type="text/css" media="screen" href="/res/css/index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/res/css/icons.css">
     <link rel="manifest" href="/manifest.json">
     <!-- Add HTMX localhosted -->
-    <script src="https://unpkg.com/htmx.org@2.0.1"></script>   
+    <script src="https://unpkg.com/htmx.org@2.0.1"></script>
 </head>
-<body> 
+
+<body>
     <aside>
         <div class="title">
             <img src="/res/images/icon.svg" alt="">
@@ -24,7 +26,8 @@
                 <span class="fab-des">Upload</span>
             </li>
             <ul class="navbar-options">
-                <li class="navbar-option" hx-push-url="/" hx-trigger="click" hx-swap="innerHTML" hx-on:afterSwap="updateTitle()" hx-target="#app" hx-get="/api/htmx/files/list.html">
+                <li class="navbar-option" hx-push-url="/" hx-trigger="click" hx-swap="innerHTML"
+                    hx-on:afterSwap="updateTitle()" hx-target="#app" hx-get="/api/htmx/files/list.html">
                     <span class="material-symbols-rounded btn">cloud</span>
                     <span>My Files</span>
                 </li>
@@ -61,23 +64,25 @@
     </main>
     <section id="prompt" data-prompt="">
         <div id="prompt-window">
-            
+
         </div>
     </section>
+
     <script>
         
-
         if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/res/js/cache-worker.js')
-              .then((registration) => {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-              }, (err) => {
-                console.log('ServiceWorker registration failed: ', err);
-              });
-          });
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/res/js/cache-worker.js')
+                    .then((registration) => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, (err) => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
         }
-      </script>
-      <script src="/res/js/index.js"></script>
+    </script>
+    <script src="/res/js/index.js"></script>
+
 </body>
+
 </html>

@@ -1,13 +1,6 @@
 import { Router } from "../library/web/route";
 import { contentType, translateString } from "../library/web/htmlViewEngine";
-// @ts-expect-error
-import indexHtml from "../frontend/html/index.html" with { type: "text" };
-// @ts-expect-error
-import loginHtml from "../frontend/html/login.html" with { type: "text" };
-// @ts-expect-error
-import registerHtml from "../frontend/html/register.html" with { type: "text" };
-import manifestJson from "../frontend/html/manifest.json";
-import { Authentication, reCAPTCHA } from "../library/auth/authentication";
+import { Authentication } from "../library/auth/authentication";
 import { User } from "../library/auth/authentication";
 import { FileModel, FileResponseModel, Filesystem, FolderModel } from "../library/data/fileDatabase";
 
@@ -17,14 +10,32 @@ const router = new Router("/api/htmx")
         if (await Authentication.verifyJWT(req) == false) return new Response("", {status: 401});
         return next();
     })
-    .get("/files.html", async (req) => {
+    .get("/files/view.html", async (req) => {
         let res = await Authentication.getUserFromJWT(req);
         const user = res as User;
-        
-        return new Response(/* HTML */`
-            <h1>Hi ${user.username}</h1>
-        
-        `, contentType);
+        const querys = new URL(req.url).searchParams;
+        if(querys.has("file")) {
+            let file = await Filesystem.getFileFromId(parseInt(querys.get("file") as string)) as FileModel;
+            if(file != null) {
+                if(file.owner != user.id) return new Response("", {status: 403});
+                let html = /* HTML */ `
+                    <div class="file-view">
+                        <div class="file-info">
+                                <button ${file.folderId ? 'hx-push-url="/f/'+file.folderId+'"' : 'hx-push-url="/"'} hx-get="/api/htmx/files/list.html${file.folderId ? '?folder='+file.folderId : ""}" hx-swap="innerHTML" hx-trigger="click" hx-target="#app" class="material-symbols-rounded goBack">arrow_back</button>
+                                <p><b>@filename:TRANSLATE</b>: ${file.filename}</p>
+                                <p><b>@type:TRANSLATE</b>: ${file.type}</p>
+                                <a href="/files/api/raw/${file.fileId}" target="_blank"><span class="material-symbols-rounded">download</span><b>@download:TRANSLATE</b></a>
+                        </div>
+                        <div class="file-preview">
+                            ${mimeTypeRender(file.type, file)}
+                        </div>
+                    </div>
+                `;
+                return new Response(await translateString({ file: html, req }), contentType);
+        }
+        }
+
+        return new Response("", {status: 404, statusText: "Not Found"});
     })
     .get("/files/list.html", async (req) => {
         let userID = await Authentication.getUserIdFromJWT(req) as number;
@@ -36,7 +47,6 @@ const router = new Router("/api/htmx")
             response = await Filesystem.getRootFiles(userID);
         }
 
-        console.log(response);
 
         let html = /* HTML */ `
             ${response.folders.length == 0 ? "" : /* HTML */` 
@@ -71,11 +81,32 @@ const router = new Router("/api/htmx")
         return new Response(await translateString({ file: html, req }), contentType);
     });
     
+function mimeTypeRender(mimeType: string, file: FileModel): string {
+    if(mimeType.startsWith("image")) return /* HTML */`
+        <img src="/files/api/raw/${file.fileId}" alt="Preview" />
+    `;
+    if(mimeType.startsWith("video")) return /* HTML */`
+        <video src="/files/api/raw/${file.fileId}" controls></video>
+    `;
+    if(mimeType.startsWith("audio")) return /* HTML */`
+        <audio src="/files/api/raw/${file.fileId}" controls></audio>
+    `;
+    return /* HTML */`
+        <p class="material-symbols-rounded" style="font-size: 75px !important; max-width: 75px">${processMimeType(mimeType)}</p>
+    `;
+}
+
 function processMimeType(mimeType: string): string {
     if(mimeType.startsWith("image")) return "image";
     if(mimeType.startsWith("video")) return "movie";
     if(mimeType.startsWith("audio")) return "library_music";
     if(mimeType.startsWith("text")) return "article";
+    if(mimeType.startsWith("application/pdf")) return "picture_as_pdf";
+    if(mimeType.startsWith("application/json")) return "data_object";
+    if(mimeType.startsWith("application/zip")) return "archive";
+    if(mimeType.startsWith("application/x-rar")) return "archive";
+    if(mimeType.startsWith("application/x-7z-compressed")) return "archive";
+    if(mimeType.startsWith("application/x-msdownload")) return "terminal";
     return "description";
 }
 

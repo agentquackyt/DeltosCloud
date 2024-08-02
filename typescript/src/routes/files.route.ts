@@ -29,6 +29,13 @@ const router = new Router("/files")
         let folder = await Filesystem.getFolder(folderId as number);
         return new Response(JSON.stringify({folderId: folder.folderId, name: folder.name}), {status: 200});
     })
+    .post("/api/file/id", async (req) => {
+        let formData = await req.formData();
+        if(!formData.has("fileId")) return new Response(JSON.stringify({message: "No name specified"}), {status: 400});
+        let folderId: unknown = formData.get("fileId");
+        let folder = await Filesystem.getFileFromId(folderId as number);
+        return new Response(JSON.stringify({folderId: folder.folderId, name: folder.filename}), {status: 200});
+    })
     .post("/api/folder", async (req) => {
         let userId = await Authentication.getUserIdFromJWT(req);
         if(userId == false) return new Response(JSON.stringify({message: "Invalid user"}), {status: 400});

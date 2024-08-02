@@ -15,9 +15,12 @@ const router = new Router("/")
         if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
         return new Response(await translateString({ file: indexHtml, req }), contentType);
     })
-    .get("/f/:folder", async (req,params) => {
+    .get("/f/:folder", async (req) => {
         if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
-        
+        return new Response(await translateString({ file: indexHtml, req }), contentType);
+    })
+    .get("/v/:file", async (req) => {
+        if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
         return new Response(await translateString({ file: indexHtml, req }), contentType);
     })
     .get("/login", async (req) => {
