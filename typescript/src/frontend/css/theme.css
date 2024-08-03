@@ -27,7 +27,7 @@
       --secondaryActive: #004789;
 
       --onPrimary: #ffffff;
-      --promptShadow: rgba(0, 0, 0, .5);
+      --promptShadow: rgba(0, 0, 0, 0.601);
     }
   }
   
@@ -41,7 +41,7 @@
       --primaryHover: #aae1ff;
       --primaryActive: #88c7ff;
       --onPrimary: #333;
-      --promptShadow: rgba(239, 252, 255, 0.5);
+      --promptShadow: rgba(220, 233, 236, 0.656);
     }
   }
   

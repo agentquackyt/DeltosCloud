@@ -14,6 +14,17 @@
     "folder": "Ordner",
     "description_field_1": "Deltos ist ein leichtgewichtiger, modularer und einfach zu bedienender Cloud-Dienst.",
 
+    "side_menu_files": "Startseite", 
+    "side_menu_add_folder": "Ordner erstellen",
+    "side_menu_addons": "Erweiterungen",
+    "side_menu_settings": "Einstellungen",
+
+    "folder_create_title": "Ordner erstellen",
+    "folder_create_name": "Ordnername",
+    "folder_create_button": "Ordner erstellen",
+    "folder_create_description": "Erstellen Sie einen Ordner, um Ihre Dateien zu organisieren. Durch die Erstellung von Ordnern können Sie Ihre Dokumente, Bilder und andere wichtige Dateien besser verwalten und kategorisieren.",
+
+
     "login_title": "Anmelden",
     "login_subtitle": "Mit Ihrem Deltos Account anmelden",
     "login_forgot_password": "Passwort vergessen?",

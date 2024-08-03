@@ -3,6 +3,7 @@ import { Output } from "../misc/logger";
 import { SHA256_to_HEX } from "../auth/jwt";
 import { BunFile } from "bun";
 import { unlink } from "node:fs/promises";
+import { del } from "express/lib/application";
 
 const userDatabase = new Database(process.cwd()+"/config/database/files.sqlite", { create: true});
 
@@ -46,6 +47,19 @@ export const Filesystem = {
     },
     getFolder: async (folderId: number): Promise<FolderModel> => {
         return await userDatabase.prepare("SELECT * FROM folder WHERE folderId = ?").get(folderId) as FolderModel;
+    },
+    deleteFolder: async (folderId: number) => {
+        console.log("delete folder", folderId);
+        await userDatabase.prepare("DELETE FROM folder WHERE folderId = ?").run(folderId);
+        let files = await userDatabase.prepare("SELECT * FROM files WHERE folderId = ? ").all(folderId) as FileModel[];
+        for(let file of files) {
+            await Filesystem.deleteFile(file.fileId);
+        }
+        
+        let folders = await userDatabase.prepare("SELECT * FROM folder WHERE parent = ? ").all(folderId) as FolderModel[];
+        for(let folder of folders) {
+            await Filesystem.deleteFolder(folder.folderId);
+        }
     },
     createFile: async (filename: string, path: string, type: string, owner: number, folder?: number) => {
         if(folder == undefined) return await userDatabase.run("INSERT INTO files (filename, path, type, owner) VALUES (?, ?, ?, ?)", [filename, path, type, owner]);

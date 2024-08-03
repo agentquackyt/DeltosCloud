@@ -3,6 +3,7 @@ import { contentType, translateString } from "../library/web/htmlViewEngine";
 import { Authentication } from "../library/auth/authentication";
 import { User } from "../library/auth/authentication";
 import { FileModel, FileResponseModel, Filesystem, FolderModel } from "../library/data/fileDatabase";
+import { BunFile } from "bun";
 
 
 const router = new Router("/api/htmx")
@@ -24,6 +25,9 @@ const router = new Router("/api/htmx")
                                 <button ${file.folderId ? 'hx-push-url="/f/'+file.folderId+'"' : 'hx-push-url="/"'} hx-get="/api/htmx/files/list.html${file.folderId ? '?folder='+file.folderId : ""}" hx-swap="innerHTML" hx-trigger="click" hx-target="#app" class="material-symbols-rounded goBack">arrow_back</button>
                                 <p><b>@filename:TRANSLATE</b>: ${file.filename}</p>
                                 <p><b>@type:TRANSLATE</b>: ${file.type}</p>
+                                <p><b>@size:TRANSLATE</b>: ${
+                                    Math.round((((await Bun.file(process.cwd()+file.path) as BunFile).size / 1000000) + Number.EPSILON) * 100) / 100
+                                    } MB</p>
                                 <a href="/files/api/raw/${file.fileId}" target="_blank"><span class="material-symbols-rounded">download</span><b>@download:TRANSLATE</b></a>
                         </div>
                         <div class="file-preview">

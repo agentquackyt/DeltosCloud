@@ -71,7 +71,8 @@ const router = new Router("/files")
         }
         return new Response(JSON.stringify({status: 200, info: "File uploaded"}), {status: 200});
     })
-    .delete("/api/file", async (req) => {
+    .post("/api/file/delete", async (req) => {
+        console.log("delete file");
         let formData = await req.formData();
         if(formData.has("fileId") == false) return new Response(JSON.stringify({message: "No file specified"}), {status: 400});
         let file: unknown = formData.get("fileId");
@@ -79,6 +80,16 @@ const router = new Router("/files")
 
         await Filesystem.deleteFile(file as number);
         return new Response(JSON.stringify({status: 200, info: "File deleted"}), {status: 200});
+    })
+    .post("/api/folder/delete", async (req) => {
+        console.log("delete folder");
+        let formData = await req.formData();
+        if(formData.has("folderId") == false) return new Response(JSON.stringify({message: "No folder specified"}), {status: 400});
+        let folder: unknown = formData.get("folderId");
+        if(folder == undefined) return new Response(JSON.stringify({message: "Invalid folder"}), {status: 400});
+
+        await Filesystem.deleteFolder(folder as number);
+        return new Response(JSON.stringify({status: 200, info: "Folder deleted"}), {status: 200});
     })
     .get("/api/list", async (req) => {
         const querys = new URL(req.url).searchParams;

@@ -29,7 +29,7 @@
                 <li class="navbar-option" hx-push-url="/" hx-trigger="click" hx-swap="innerHTML"
                     hx-on:afterSwap="updateTitle()" hx-target="#app" hx-get="/api/htmx/files/list.html">
                     <span class="material-symbols-rounded btn">cloud</span>
-                    <span>My Files</span>
+                    <span>@side_menu_files:TRANSLATE</span>
                 </li>
                 <!--
                 <li class="navbar-option fab">
@@ -37,22 +37,22 @@
                     <span>Upload</span>
                 </li>
                 -->
-                <li class="navbar-option">
+                <li class="navbar-option" id="add-folder-btn">
                     <span class="material-symbols-rounded btn">create_new_folder</span>
-                    <span>Add Folder</span>
+                    <span>@side_menu_add_folder:TRANSLATE</span>
                 </li>
                 <li class="navbar-option">
                     <span class="material-symbols-rounded btn">extension</span>
-                    <span>Addons</span>
+                    <span>@side_menu_addons:TRANSLATE</span>
                 </li>
                 <li class="navbar-option">
                     <span class="material-symbols-rounded btn">settings</span>
-                    <span>Settings</span>
+                    <span>@side_menu_settings:TRANSLATE</span>
                 </li>
             </ul>
         </div>
     </aside>
-    <main>
+    <main ondrop="dropHandler(event, '/');" ondragover="dragOverHandler(event);">
         <h2 id="app-title">My Files</h2><!--
         <section id="app"  hx-trigger="load" hx-swap="innerHTML" hx-target="#app" hx-get="/api/htmx/files/list.html">
         -->
@@ -63,8 +63,22 @@
         </div>
     </main>
     <section id="prompt" data-prompt="">
-        <div id="prompt-window">
-
+        <div class="prompt-window">
+            <div class="prompt-header">
+                <button class="prompt-close goBack material-symbols-rounded" onclick="javascript:Prompts.close()">close</button>
+                <h2 class="prompt-title">@folder_create_title:TRANSLATE</h2>
+            </div>
+            <div class="prompt-body">
+                <form id="add-folder-form" onsubmit="Prompts.send(event)" name="add-folder-form" class="form">
+                    <p class="description">@folder_create_description:TRANSLATE</p>
+                    
+                    <input type="text" name="folder" id="folderInput" placeholder="@folder_create_name:TRANSLATE" required>
+                    <button class="btn-submit" type="submit">
+                        <span class="material-symbols-rounded">add</span>
+                        @folder_create_button:TRANSLATE
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
