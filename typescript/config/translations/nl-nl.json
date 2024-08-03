@@ -2,26 +2,41 @@
     "files": "Bestanden",
     "upload": "Uploaden",
     "download": "Downloaden",
+    "filename": "Bestandsnaam",
+    "size": "Grootte",
+    "last_modified": "Laatst gewijzigd",
+    "actions": "Acties",
+    "type": "Type",
     "delete": "Verwijderen",
     "rename": "Hernoemen",
     "copy": "Kopiëren",
     "move": "Verplaatsen",
     "folder": "Map",
     "description_field_1": "Deltos is een lichte, modulaire en gebruiksvriendelijke clouddienst.",
-    
+
+    "side_menu_files": "Home",
+    "side_menu_add_folder": "Map",
+    "side_menu_addons": "Add-ons",
+    "side_menu_settings": "Instellingen",
+
+    "folder_create_title": "Map maken",
+    "folder_create_name": "Mapnaam",
+    "folder_create_button": "Map maken",
+    "folder_create_description": "Maak een map om uw bestanden te organiseren. Door mappen te maken kunt u uw documenten, afbeeldingen en andere belangrijke bestanden beter beheren en categoriseren.",
+
     "login_title": "Inloggen",
-    "login_subtitle": "Log in met je Deltos-account",
+    "login_subtitle": "Log in met uw Deltos-account",
     "login_forgot_password": "Wachtwoord vergeten?",
     "login_button": "Inloggen",
     "login_no_account": "Account aanmaken",
-    "login_email_or_username": "E-mail of Gebruikersnaam",
+    "login_email_or_username": "E-mail of gebruikersnaam",
     "login_password": "Wachtwoord",
-    "login_private_window": "Niet jouw computer? Gebruik de privémodus van je browser om veilig in te loggen.",
-    "login_error_message": "Inloggen mislukt. Controleer je gegevens en probeer het opnieuw.",
-    
+    "login_private_window": "Niet uw computer? Gebruik de privémodus van uw browser om veilig in te loggen.",
+    "login_error_message": "Inloggen mislukt. Controleer uw gegevens en probeer het opnieuw.",
+
     "login_username": "Gebruikersnaam",
     "login_email": "E-mail",
-    "login_password_confirm": "Wachtwoord bevestigen",
+    "login_password_confirm": "Bevestig wachtwoord",
     "login_title_create": "Account aanmaken",
     "login_subtitle_create": "Maak een nieuw Deltos-account aan"
 }

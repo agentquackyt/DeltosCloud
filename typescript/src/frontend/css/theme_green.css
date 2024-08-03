@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'GoogleSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/res/fonts/GoogleSans.woff") format('woff');
+}
+
+* {
+  font-family: 'GoogleSans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Light Magenta/Rosa Theme */
+/* Green Theme Variant */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0e291a;
+    --onBackground: #fff;
+    --contentBackground: #0f1a0f;
+    --onContentBackground: #fff;
+    --primary: #1b4d31;
+    --primaryHover: #1d5436;
+    --primaryActive: #266944;
+    --secondary: #5a765a;
+    --secondaryHover: #709270;
+    --secondaryActive: #5f7d5f;
+    --onPrimary: #ffffff;
+    --promptShadow: rgba(0, 0, 0, 0.601);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #f0fff0;
+    --onBackground: #333;
+    --contentBackground: #fff;
+    --onContentBackground: #333;
+    --primary: #98fb98;
+    --primaryHover: #90ee90;
+    --primaryActive: #3cb371;
+    --secondary: #c1ffc1;
+    --secondaryHover: #b4eeb4;
+    --secondaryActive: #7ccd7c;
+    --onPrimary: #333;
+    --promptShadow: rgba(203, 237, 203, 0.656);
+  }
+}
+
+
+  
+.show {
+  display: flex;
+}

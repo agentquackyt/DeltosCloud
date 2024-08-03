@@ -53,7 +53,8 @@
         </div>
     </aside>
     <main ondrop="dropHandler(event, '/');" ondragover="dragOverHandler(event);">
-        <h2 id="app-title">My Files</h2><!--
+        <h2 style="display: flex; flex-direction: row; justify-content: space-between;"><span id="app-title">My
+                Files</span> </h2><!--
         <section id="app"  hx-trigger="load" hx-swap="innerHTML" hx-target="#app" hx-get="/api/htmx/files/list.html">
         -->
         <section id="app">
@@ -65,14 +66,16 @@
     <section id="prompt" data-prompt="">
         <div class="prompt-window">
             <div class="prompt-header">
-                <button class="prompt-close goBack material-symbols-rounded" onclick="javascript:Prompts.close()">close</button>
+                <button class="prompt-close goBack material-symbols-rounded"
+                    onclick="javascript:Prompts.close()">close</button>
                 <h2 class="prompt-title">@folder_create_title:TRANSLATE</h2>
             </div>
             <div class="prompt-body">
                 <form id="add-folder-form" onsubmit="Prompts.send(event)" name="add-folder-form" class="form">
                     <p class="description">@folder_create_description:TRANSLATE</p>
-                    
-                    <input type="text" name="folder" id="folderInput" placeholder="@folder_create_name:TRANSLATE" required>
+
+                    <input type="text" name="folder" id="folderInput" placeholder="@folder_create_name:TRANSLATE"
+                        required>
                     <button class="btn-submit" type="submit">
                         <span class="material-symbols-rounded">add</span>
                         @folder_create_button:TRANSLATE
@@ -83,7 +86,6 @@
     </section>
 
     <script>
-        
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/res/js/cache-worker.js')

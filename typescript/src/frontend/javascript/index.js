@@ -151,4 +151,6 @@ function dropHandler(event) {
 }
 
 
+
+
 document.getElementById('add-folder-btn').addEventListener('click', Prompts.show);

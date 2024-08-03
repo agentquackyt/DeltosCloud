@@ -2,26 +2,41 @@
     "files": "Files",
     "upload": "Upload",
     "download": "Download",
+    "filename": "Filename",
+    "size": "Size",
+    "last_modified": "Last modified",
+    "actions": "Actions",
+    "type": "Type",
     "delete": "Delete",
     "rename": "Rename",
     "copy": "Copy",
     "move": "Move",
     "folder": "Folder",
     "description_field_1": "Deltos is a lightweight, modular, and easy-to-use cloud service.",
-    
-    "login_title": "Log In",
-    "login_subtitle": "Log in with your Deltos account",
+
+    "side_menu_files": "Home",
+    "side_menu_add_folder": "Folder",
+    "side_menu_addons": "Addons",
+    "side_menu_settings": "Settings",
+
+    "folder_create_title": "Create Folder",
+    "folder_create_name": "Folder name",
+    "folder_create_button": "Create Folder",
+    "folder_create_description": "Create a folder to organize your files. By creating folders, you can better manage and categorize your documents, images, and other important files.",
+
+    "login_title": "Login",
+    "login_subtitle": "Sign in with your Deltos account",
     "login_forgot_password": "Forgot password?",
-    "login_button": "Log In",
-    "login_no_account": "Create Account",
-    "login_email_or_username": "Email or Username",
+    "login_button": "Login",
+    "login_no_account": "Create account",
+    "login_email_or_username": "Email or username",
     "login_password": "Password",
-    "login_private_window": "Not your computer? Use your browser's private mode to log in securely.",
-    "login_error_message": "Login failed. Please check your details and try again.",
-    
+    "login_private_window": "Not your computer? Use your browser's private mode to sign in securely.",
+    "login_error_message": "Login failed. Please check your credentials and try again.",
+
     "login_username": "Username",
     "login_email": "Email",
-    "login_password_confirm": "Confirm Password",
-    "login_title_create": "Create Account",
-    "login_subtitle_create": "Create a new Deltos Account"
+    "login_password_confirm": "Confirm password",
+    "login_title_create": "Create account",
+    "login_subtitle_create": "Create a new Deltos account"
 }

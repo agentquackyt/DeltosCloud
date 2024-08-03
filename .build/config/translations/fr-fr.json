@@ -2,6 +2,11 @@
     "files": "Fichiers",
     "upload": "Télécharger",
     "download": "Télécharger",
+    "filename": "Nom de fichier",
+    "size": "Taille",
+    "last_modified": "Dernière modification",
+    "actions": "Actions",
+    "type": "Type",
     "delete": "Supprimer",
     "rename": "Renommer",
     "copy": "Copier",
@@ -9,20 +14,29 @@
     "folder": "Dossier",
     "description_field_1": "Deltos est un service cloud léger, modulaire et facile à utiliser.",
 
+    "side_menu_files": "Accueil",
+    "side_menu_add_folder": "Dossier",
+    "side_menu_addons": "Modules",
+    "side_menu_settings": "Paramètres",
+
+    "folder_create_title": "Créer un dossier",
+    "folder_create_name": "Nom du dossier",
+    "folder_create_button": "Créer un dossier",
+    "folder_create_description": "Créez un dossier pour organiser vos fichiers. En créant des dossiers, vous pouvez mieux gérer et catégoriser vos documents, images et autres fichiers importants.",
+
     "login_title": "Connexion",
     "login_subtitle": "Connectez-vous avec votre compte Deltos",
     "login_forgot_password": "Mot de passe oublié?",
     "login_button": "Connexion",
     "login_no_account": "Créer un compte",
-    "login_email_or_username": "Email ou Nom d'utilisateur",
+    "login_email_or_username": "Email ou nom d'utilisateur",
     "login_password": "Mot de passe",
-    "login_private_window": "Pas votre ordinateur ? Utilisez le mode privé de votre navigateur pour vous connecter en toute sécurité.",
-    "login_error_message": "Échec de la connexion. Veuillez vérifier vos informations et réessayer.",
+    "login_private_window": "Ce n'est pas votre ordinateur ? Utilisez le mode privé de votre navigateur pour vous connecter en toute sécurité.",
+    "login_error_message": "Échec de la connexion. Veuillez vérifier vos informations d'identification et réessayer.",
 
     "login_username": "Nom d'utilisateur",
-    "login_email": "E-mail",
+    "login_email": "Email",
     "login_password_confirm": "Confirmer le mot de passe",
     "login_title_create": "Créer un compte",
-    "login_subtitle_create": "Créer un nouveau compte Deltos"
-
+    "login_subtitle_create": "Créez un nouveau compte Deltos"
 }
