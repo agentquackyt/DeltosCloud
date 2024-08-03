@@ -2,10 +2,42 @@
     "files": "Dateien",
     "upload": "Hochladen",
     "download": "Herunterladen",
+    "filename": "Dateiname",
+    "size": "Größe",
+    "last_modified": "Zuletzt geändert",
+    "actions": "Aktionen",
+    "type": "Typ",
     "delete": "Löschen",
     "rename": "Umbenennen",
     "copy": "Kopieren",
     "move": "Verschieben",
     "folder": "Ordner",
-    "description_field_1": "Deltos ist ein leichtgewichtiger, modularer und einfach zu bedienender Cloud-Dienst."
+    "description_field_1": "Deltos ist ein leichtgewichtiger, modularer und einfach zu bedienender Cloud-Dienst.",
+
+    "side_menu_files": "Startseite", 
+    "side_menu_add_folder": "Ordner erstellen",
+    "side_menu_addons": "Erweiterungen",
+    "side_menu_settings": "Einstellungen",
+
+    "folder_create_title": "Ordner erstellen",
+    "folder_create_name": "Ordnername",
+    "folder_create_button": "Ordner erstellen",
+    "folder_create_description": "Erstellen Sie einen Ordner, um Ihre Dateien zu organisieren. Durch die Erstellung von Ordnern können Sie Ihre Dokumente, Bilder und andere wichtige Dateien besser verwalten und kategorisieren.",
+
+
+    "login_title": "Anmelden",
+    "login_subtitle": "Mit Ihrem Deltos Account anmelden",
+    "login_forgot_password": "Passwort vergessen?",
+    "login_button": "Anmelden",
+    "login_no_account": "Account erstellen",
+    "login_email_or_username": "E-Mail oder Benutzername",
+    "login_password": "Passwort",
+    "login_private_window": "Nicht Ihr Computer? Nutzen Sie den privaten Modus Ihres Browsers, um sich sicher anzumelden.",
+    "login_error_message": "Die Anmeldung ist fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.",
+
+    "login_username": "Benutzername",
+    "login_email": "E-Mail",
+    "login_password_confirm": "Passwort bestätigen",
+    "login_title_create": "Account erstellen",
+    "login_subtitle_create": "Erstellen Sie einen neuen Deltos Account"
 }

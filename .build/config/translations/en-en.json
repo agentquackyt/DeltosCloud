@@ -7,5 +7,21 @@
     "copy": "Copy",
     "move": "Move",
     "folder": "Folder",
-    "description_field_1": "Deltos is a lightweight, modular, and easy-to-use cloud service."
+    "description_field_1": "Deltos is a lightweight, modular, and easy-to-use cloud service.",
+    
+    "login_title": "Log In",
+    "login_subtitle": "Log in with your Deltos account",
+    "login_forgot_password": "Forgot password?",
+    "login_button": "Log In",
+    "login_no_account": "Create Account",
+    "login_email_or_username": "Email or Username",
+    "login_password": "Password",
+    "login_private_window": "Not your computer? Use your browser's private mode to log in securely.",
+    "login_error_message": "Login failed. Please check your details and try again.",
+    
+    "login_username": "Username",
+    "login_email": "Email",
+    "login_password_confirm": "Confirm Password",
+    "login_title_create": "Create Account",
+    "login_subtitle_create": "Create a new Deltos Account"
 }

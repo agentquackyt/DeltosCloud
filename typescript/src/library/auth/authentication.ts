@@ -95,7 +95,7 @@ export const Authentication = {
 
 export const reCAPTCHA = {
     validate: async (token: string): Promise<boolean> => {
-        const secret = Bun.env.RECAPTCHA_SECRET || "";
+        const secret = Bun.env.GOOGLE_CAPTCHA_REAL || "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
 
         const formData = new FormData();
         formData.append("secret", secret);
