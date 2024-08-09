@@ -64,6 +64,7 @@ const router = new Router("/api/htmx")
                 `).join("")}
             </div>
             `}
+            ${response.files.length == 0 ? "" : /* HTML */` 
             <h1>@files:TRANSLATE</h1>
             <div class="filelist item-list">
                 ${response.files.map((file: FileModel) => /* HTML */`
@@ -80,6 +81,14 @@ const router = new Router("/api/htmx")
                     </div>
                 `).join("")}
             </div>
+            `}
+            ${response.folders.length == 0 && response.files.length == 0 ? /* HTML */`
+                <div class="centered">
+                    <img src="/res/images/icon.svg" alt="" draggable="false"/>
+                    <h2>@empty_drive:TRANSLATE</h2>
+                    <h3 class="grey-text">@empty_drive_subtitle:TRANSLATE</h3>
+                </div>
+            `: ""}
         `;
 
         return new Response(await translateString({ file: html, req }), contentType);

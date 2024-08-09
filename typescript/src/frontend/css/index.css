@@ -15,6 +15,32 @@ html {
     color: var(--onBackground)
 }
 
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+    padding: 3rem;
+}
+
+.centered img {
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.centered h3 {
+    line-height: 135%;
+    font-size: 1.25rem;
+}
+.centered h3, .centered h2 {
+    text-align: center;
+}
+
+
 aside {
     flex: 2;
     min-width: 225px;
@@ -170,6 +196,8 @@ main {
     margin: .75rem;
     margin-top: 0;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -640,7 +668,7 @@ button.goBack.material-symbols-rounded:active {
 }
 
 .grey-text {
-    color: rgb(53, 53, 53);
+    color: rgb(87, 87, 87);
 }
 
 @media (prefers-color-scheme: dark) {

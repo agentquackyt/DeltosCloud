@@ -35,7 +35,7 @@ import indexRouter from "./src/routes/index.route";
 httpServer.use(indexRouter);
 
 
-httpServer.start({ port: 3000, callback: (port) => Output.info("Server started on port "+port) });
+httpServer.start({ callback: (port) => Output.info("Server started on port "+port) });
 
 
 /*

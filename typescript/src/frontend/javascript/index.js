@@ -9,17 +9,17 @@ async function updateTitle() {
         let response = await fetch('/files/api/folder/id', { method: 'POST', body: formData })
         let { name } = await response.json();
         document.getElementById('app-title').innerHTML = /* HTML */ `<span class="grey-text">Folder / </span>`+ name;
-        document.title = 'Deltos Cloud | ' + name;
+        document.title = 'Deltos Drive | ' + name;
     } else if (location.pathname.startsWith('/v/')) {
         let formData = new FormData();
         formData.append('fileId', location.pathname.split("/").pop());
         let response = await fetch('/files/api/file/id', { method: 'POST', body: formData })
         let { name } = await response.json();
         document.getElementById('app-title').innerHTML = /* HTML */ `<span class="grey-text">File / </span>`+ name;
-        document.title = 'Deltos Cloud | ' + name;
+        document.title = 'Deltos Drive | ' + name;
     } else {
         document.getElementById('app-title').innerText = "Home";
-        document.title = 'Deltos Cloud';
+        document.title = 'Deltos Drive';
     }
 }
 

@@ -19,6 +19,9 @@
     "side_menu_addons": "Addons",
     "side_menu_settings": "Optionen",
 
+    "empty_drive": "Sie haben noch keine Dateien",
+    "empty_drive_subtitle": "Ziehen Sie Dateien hierher oder klicken Sie auf 'Hochladen', um Dateien hochzuladen",
+
     "folder_create_title": "Ordner erstellen",
     "folder_create_name": "Ordnername",
     "folder_create_button": "Ordner erstellen",
