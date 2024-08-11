@@ -1,14 +1,5 @@
 @import url("/res/css/theme.css");
 
-/* 
-    The following CSS is for the layout of the app.
-    The layout is a flexbox with a sidebar and a main content area.
-    The sidebar is 2/15 of the width of the screen and the main content area is 13/15 of the width of the screen.
-    The sidebar has a minimum width of 300px and the main content area has a minimum width of 600px.
-    The main content area is a flexbox with a padding of .75rem.
-    The app has a background of var(--contentBackground) and a color of var(--onContentBackground).
-    The app has a border-radius of 2rem and padding of 1rem.
-*/
 
 body,
 html {
@@ -24,34 +15,37 @@ html {
     color: var(--onBackground)
 }
 
-
-@media (max-width: 775px) {
-    body {
-        flex-direction: column-reverse;
-    }
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+    padding: 3rem;
 }
 
-/* Sidebar */
-/* The sidebar is a flexbox with a width of 2/15 of the screen width and a minimum width of 300px. */
+.centered img {
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.centered h3 {
+    line-height: 135%;
+    font-size: 1.25rem;
+}
+.centered h3, .centered h2 {
+    text-align: center;
+}
+
 
 aside {
     flex: 2;
-    /*min-width: 225px;*/
-    max-width: 100px;
+    min-width: 225px;
     height: 100%;
 }
-aside * {
-    transition: 250ms ease;
-}
-/* DEV   
-
-aside * {
-    border: seagreen 1px solid;
-}
-*/
-
-
-/* The sidebar has a title with an image and a heading. */
 
 .title {
     display: flex;
@@ -60,43 +54,38 @@ aside * {
     justify-content: center;
     gap: 1rem;
     padding: .5rem;
-    margin-top: .25em;
 }
 
 .title img {
-    width: 45px;
+    max-width: 50px;
     aspect-ratio: 1/1;
     object-fit: cover;
 }
 
 .title h1 {
-    display: none;
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 
-
-/* The sidebar has a FAB for adding files. */
-
-.fab-des {
-    /* //EXPERIMENTAL */
-    display: none;
+div.options {
+    display: flex;
+    padding: 0 1.25em;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 2rem;
 }
 
-.fab:hover .fab-des {
-    /* //EXPERIMENTAL */
-    font-weight: bold;
-}
-
+/* FAB */
 
 .navbar-option.fab {
-    padding: 20px;
+    padding: .5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
-    aspect-ratio: 1/1;
-    max-height: 75px;
-    max-width: 75px;
+    aspect-ratio: 2/1;
+    max-width: 140px;
     border-radius: 1rem;
     user-select: none;
     background-color: var(--primary);
@@ -104,16 +93,13 @@ aside * {
     margin-bottom: 3.5rem;
     z-index: 99;
     box-shadow: 0 0 5px 0 var(--promptShadow);
-
-    box-sizing: content-box;
 }
-
 
 .navbar-option.fab .material-symbols-rounded {
     margin: 0;
-    margin-right: 0;
-    border-radius: 0 !important;
-    /* //EXPERIMENTAL sonst 15px */
+    padding: 2px;
+    margin-right: 15px;
+    border-radius: .5em;
     transition: 250ms ease-in-out;
     font-size: 35px !important;
 }
@@ -128,26 +114,37 @@ aside * {
     background-color: var(--primaryHover);
 }
 
-/* The sidebar has a list of options. */
+/* FAB end */
 
-div.options {
-    display: flex;
-    padding: 0;
-    width: 100%;
-    flex-direction: column;
-    padding-top: 3.5rem;
-    align-items: center;
-}
-
-ul.navbar-options {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+ul {
+    list-style-type: none;
     padding: 0;
     margin: 0;
-    justify-content: space-between;
-    width: fit-content;
-    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: .25em;
+    width: 100%;
+}
+
+.navbar-option {
+    font-size: larger;
+    padding: 10px;
+    border-radius: 20px;
+    color: var(--onPrimary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: 200ms;
+}
+
+.navbar-option .material-symbols-rounded {
+    font-size: 30px !important;
+    margin-right: 1rem;
+
+}
+
+.navbar-option:hover {
+    background-color: var(--primaryHover);
 }
 
 .navbar-option .material-symbols-rounded {
@@ -158,148 +155,25 @@ ul.navbar-options {
         'opsz' 40
 }
 
-.navbar-option:hover .material-symbols-rounded {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 600,
-        'GRAD' 0,
-        'opsz' 40
+
+
+/*
+    The following CSS is for the layout of the app.
+    The layout is a flexbox with a sidebar and a main content area.
+    The sidebar is 2/15 of the width of the screen and the main content area is 13/15 of the width of the screen.
+    The sidebar has a minimum width of 300px and the main content area has a minimum width of 600px.
+    The main content area is a flexbox with a padding of .75rem.
+    The app has a background of var(--contentBackground) and a color of var(--onContentBackground).
+    The app has a border-radius of 2rem and padding of 1rem.
+*/
+
+/* DEVELOPMENT */
+/*
+* {
+    border: red 1px solid;
 }
+/* */
 
-
-/* The style of the options */ 
-.navbar-options .navbar-option {
-    padding: .5rem;
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: small;
-    gap: 7px;
-    text-align: center;
-}
-
-.navbar-options .navbar-option .material-symbols-rounded {
-    margin: 0;
-    padding: 2px 15px;
-    border-radius: .55em;
-    font-size: 28px !important;
-    transition: 250ms ease-in-out;
-    box-sizing: content-box;
-}
-
-.navbar-option.fab .material-symbols-rounded,
-.navbar-option.fab:hover .material-symbols-rounded,
-.navbar-option.fab:active .material-symbols-rounded {
-    margin: 0;
-    background-color: transparent;
-}
-
-.navbar-option:hover .material-symbols-rounded {
-    color: var(--onPrimary);
-    background-color: var(--primaryHover);
-}
-
-.navbar-option:active .material-symbols-rounded {
-    color: var(--onPrimary);
-    background-color: var(--primaryActive);
-}
-
-.navbar-option:hover {
-    background-color: transparent;
-}
-
-/* styles for extended sidebar */
-@media screen and (max-width: 775px) {
-    .title h1 {
-        font-size: 1.25rem;
-        font-weight: 400;
-        display: block;
-    }
-}
-
-@media screen and (min-width: 775px) {
-
-    aside.extended {
-        flex: 2;
-        min-width: 225px;
-        height: 100%;
-    }
-
-    aside.extended .title h1 {
-        font-size: 1.25rem;
-        font-weight: 400;
-        display: block;
-    }
-
-    aside.extended .navbar-option.fab {
-        aspect-ratio: 2/1;
-        max-width: 150px;
-        max-height: 75px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-
-    aside.extended .navbar-option.fab .material-symbols-rounded {
-        margin-right: 15px;
-    }
-
-    aside.extended .fab-des {
-        display: flex;
-    }
-
-    /* The sidebar has a list of options. */
-    aside.extended div.options {
-        display: flex;
-        padding: 0 1.25em;
-        width: 100%;
-        flex-direction: column;
-        padding-top: 3.5rem;
-        align-items: normal;
-    }
-
-
-    aside.extended ul.navbar-options {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: .3em;
-        width: 100%;
-    }
-
-
-    aside.extended .navbar-option {
-        font-size: larger;
-        padding: 10px;
-        border-radius: 20px;
-        color: var(--onPrimary);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: left;
-        transition: 200ms;
-    }
-
-    aside.extended .navbar-option .material-symbols-rounded {
-        font-size: 30px !important;
-        margin-right: 1rem;
-        padding: 0;
-    }
-
-    aside.extended .navbar-option:hover {
-        background-color: var(--primaryHover);
-    }
-}
-
-
-/* ===================== SIDEBAR END ==================== */
-
-/* The main element of the Page with the #app element within it */
 main {
     flex: 13;
     min-width: 400px;
@@ -325,30 +199,11 @@ main {
     display: flex;
     flex-direction: column;
 }
-    
-@media (max-width: 775px) {
-    aside {
-        flex: 1;
-        min-width: 100%;
-    }
 
-    main {
-        flex: auto;
-        min-width: 100%;
-        padding: 8px;
-        padding-bottom: 0;
-        margin-top: 50px;
-    }
-
-    #app {
-        border-radius: 1rem;
-        margin-bottom: 0;
-    }
-}
 
 
 /* Desktop Layout */
-@media (min-width: 775px) {
+@media (min-width: 800px) {
     .material-symbols-rounded {
         max-width: 30px;
         overflow: hidden;
@@ -361,7 +216,11 @@ main {
 }
 
 
-@media (max-width: 775px) {
+@media (max-width: 800px) {
+    body {
+        flex-direction: column-reverse;
+    }
+
     aside {
         flex: 1;
         min-width: 100%;
@@ -388,6 +247,11 @@ main {
         right: 0;
     }
 
+    /*
+    .options * {
+        border: red dotted 1px;
+    }
+*/
     div.options {
         align-items: center;
         justify-content: center;
@@ -397,7 +261,7 @@ main {
         flex-direction: row;
     }
 
-    ul.navbar-options {
+    .navbar-options {
         flex-direction: row;
         gap: 1.5rem;
         padding: 0;
@@ -464,8 +328,6 @@ main {
         display: none;
     }
 }
-
-
 
 /* Prompts */
 #prompt {
@@ -544,7 +406,7 @@ main>h2 {
 }
 
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 800px) {
     #snackbar {
         bottom: 80px;
     }
@@ -559,15 +421,12 @@ main>h2 {
     user-select: none;
 }
 
-
-/* =============== END GENERAL LAYOUT =============== */
-
 /* Files and folders */
 .item-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
-    padding: .75rem 0;
+    padding: .75rem 0 ;
     align-items: center;
 }
 
@@ -635,10 +494,9 @@ main>h2 {
     overflow: hidden;
     text-wrap: nowrap;
 }
-/*
-@media screen and (max-width: 800px) and (min-width: 600px) {
 
-    /* Files and folders *//*
+@media screen and (max-width: 800px) and (min-width: 600px) {
+    /* Files and folders */
     .item-list {
         display: flex;
     }
@@ -646,15 +504,14 @@ main>h2 {
     .file-card {
         max-width: 45%;
     }
-}*/
+}
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 600px) {
     .file-card {
         max-width: 100%;
     }
 
-    .preview-image,
-    .preview-image img {
+    .preview-image, .preview-image img {
         aspect-ratio: 7/4;
     }
 }
@@ -681,8 +538,7 @@ main>h2 {
     padding: 1rem;
 }
 
-.file-info a,
-.btn-submit {
+.file-info a, .btn-submit {
     color: var(--onBackground);
     text-decoration: none;
     background-color: var(--primary);
@@ -729,13 +585,11 @@ input#folderInput {
     padding-right: .75rem;
 }
 
-.file-info a:hover,
-.btn-submit:hover {
+.file-info a:hover, .btn-submit:hover {
     background-color: var(--primaryHover);
 }
 
-.file-info a:active,
-.btn-submit:hover {
+.file-info a:active, .btn-submit:hover {
     background-color: var(--primaryActive);
 }
 
@@ -743,7 +597,7 @@ input#folderInput {
     flex: 4;
 }
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 800px) {
     .file-view {
         flex-direction: column;
     }
@@ -755,7 +609,6 @@ input#folderInput {
     .file-preview {
         flex: 2;
     }
-
     button.goBack.material-symbols-rounded {
         max-height: 35px;
         max-width: 35px;
@@ -764,9 +617,7 @@ input#folderInput {
     }
 }
 
-.file-preview img,
-.file-preview video,
-.file-preview audio {
+.file-preview img, .file-preview video, .file-preview audio {
     width: 100%;
     object-fit: contain;
     border-radius: 1.25rem;
@@ -808,7 +659,6 @@ button.goBack.material-symbols-rounded:active {
     max-width: 400px;
     box-sizing: border-box;
 }
-
 .prompt-header {
     display: flex;
     flex-direction: row;
@@ -817,34 +667,14 @@ button.goBack.material-symbols-rounded:active {
     margin-bottom: 1rem;
 }
 
-
-
-
-/* Special view for the #app element if no files or folders are found*/
-
-.centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100%;
-    width: 100%;
-    padding: 3rem;
+.grey-text {
+    color: rgb(87, 87, 87);
 }
 
-.centered img {
-    width: 100px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+@media (prefers-color-scheme: dark) {
+    .grey-text {
+        color: rgb(159, 159, 159);
+    }
 }
 
-.centered h3 {
-    line-height: 135%;
-    font-size: 1.25rem;
-}
 
-.centered h3,
-.centered h2 {
-    text-align: center;
-}
