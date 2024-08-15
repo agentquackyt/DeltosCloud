@@ -33,6 +33,9 @@
 
     --onPrimary: #ffffff;
     --promptShadow: rgba(0, 0, 0, 0.601);
+
+    --errorHover: #8b0000;
+    --onErrorHover: #fdd0d0;
   }
 }
 
@@ -52,6 +55,9 @@
     --primaryActive: #88c7ff;
     --onPrimary: #333;
     --promptShadow: rgba(220, 233, 236, 0.656);
+
+    --errorHover: #ffa0a0;
+    --onErrorHover: #900000;
   }
 }
 

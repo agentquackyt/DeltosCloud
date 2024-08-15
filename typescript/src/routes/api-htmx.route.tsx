@@ -4,6 +4,7 @@ import { Authentication } from "../library/auth/authentication";
 import { User } from "../library/auth/authentication";
 import { FileModel, FileResponseModel, Filesystem, FolderModel } from "../library/data/fileDatabase";
 import { BunFile } from "bun";
+import { processMimeType } from "../library/data/mimeTypes";
 
 
 const router = new Router("/api/htmx")
@@ -58,7 +59,7 @@ const router = new Router("/api/htmx")
             
             <div class="folderlist item-list">
                 ${response.folders.map((folder: FolderModel) => /* HTML */`
-                    <div hx-push-url="/f/${folder.folderId}" hx-get="/api/htmx/files/list.html?folder=${folder.folderId}" hx-swap="innerHTML" hx-trigger="click" hx-target="#app" class="file-card folder" >
+                    <div data-folderid=${folder.folderId} hx-push-url="/f/${folder.folderId}" hx-get="/api/htmx/files/list.html?folder=${folder.folderId}" hx-swap="innerHTML" hx-trigger="click" hx-target="#app" class="file-card folder context-type-folder" >
                         <p>${folder.name}</p>
                     </div>
                 `).join("")}
@@ -68,7 +69,7 @@ const router = new Router("/api/htmx")
             <h1>@files:TRANSLATE</h1>
             <div class="filelist item-list">
                 ${response.files.map((file: FileModel) => /* HTML */`
-                    <div hx-push-url="/v/${file.fileId}" hx-get="/api/htmx/files/view.html?file=${file.fileId}" hx-swap="innerHTML" hx-trigger="click" hx-target="#app" class="file-card file" >
+                    <div data-fileid=${file.fileId} hx-push-url="/v/${file.fileId}" hx-get="/api/htmx/files/view.html?file=${file.fileId}" hx-swap="innerHTML" hx-trigger="click" hx-target="#app" class="file-card file context-type-file" >
                         <p class="file-name">${file.filename}</p>
                         <div class="preview-image">
                             ${file.type.startsWith("image") ? /* HTML */`
@@ -109,18 +110,6 @@ function mimeTypeRender(mimeType: string, file: FileModel): string {
     `;
 }
 
-function processMimeType(mimeType: string): string {
-    if(mimeType.startsWith("image")) return "image";
-    if(mimeType.startsWith("video")) return "movie";
-    if(mimeType.startsWith("audio")) return "library_music";
-    if(mimeType.startsWith("text")) return "article";
-    if(mimeType.startsWith("application/pdf")) return "picture_as_pdf";
-    if(mimeType.startsWith("application/json")) return "data_object";
-    if(mimeType.startsWith("application/zip")) return "archive";
-    if(mimeType.startsWith("application/x-rar")) return "archive";
-    if(mimeType.startsWith("application/x-7z-compressed")) return "archive";
-    if(mimeType.startsWith("application/x-msdownload")) return "terminal";
-    return "description";
-}
+
 
 export default router;

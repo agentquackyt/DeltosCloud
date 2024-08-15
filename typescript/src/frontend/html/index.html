@@ -60,6 +60,29 @@
         <div id="snackbar">
             <span>File uploaded successfully</span>
         </div>
+        <div id="contextmenu" class="extended">
+            <ul class="navbar-options">
+                <li class="navbar-option" hx-push-url="/" hx-trigger="click" hx-swap="innerHTML"
+                    hx-on:afterSwap="updateTitle()" hx-target="#app" hx-get="/api/htmx/files/list.html">
+                    <span class="material-symbols-rounded btn">download</span>
+                    <span>@download:TRANSLATE</span>
+                </li>
+                <li class="navbar-option" hx-push-url="/" hx-trigger="click" hx-swap="innerHTML"
+                    hx-on:afterSwap="updateTitle()" hx-target="#app" hx-get="/api/htmx/files/list.html">
+                    <span class="material-symbols-rounded btn">drive_file_move</span>
+                    <span>@move:TRANSLATE</span>
+                </li>
+                <li class="navbar-option" hx-push-url="/" hx-trigger="click" hx-swap="innerHTML"
+                    hx-on:afterSwap="updateTitle()" hx-target="#app" hx-get="/api/htmx/files/list.html">
+                    <span class="material-symbols-rounded btn">border_color</span>
+                    <span>@rename:TRANSLATE</span>
+                </li>
+                <li class="navbar-option flag-danger" onclick="deleteFile()">
+                    <span class="material-symbols-rounded btn">delete</span>
+                    <span>@delete:TRANSLATE</span>
+                </li>
+            </ul>
+        </div>
     </main>
     <section id="prompt" data-prompt="">
         <div class="prompt-window">
@@ -99,8 +122,10 @@
             document.querySelector('aside').classList.toggle('extended');
         });
     </script>
-    <script src="/res/js/index.js"></script>
 
+
+    
+    <script src="/res/js/index.js"></script>
 </body>
 
 </html>

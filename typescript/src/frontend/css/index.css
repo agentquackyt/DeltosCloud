@@ -180,6 +180,11 @@ ul.navbar-options {
     text-align: center;
 }
 
+#contextmenu .navbar-options .navbar-option .material-symbols-rounded {
+    padding: 2px 0;
+    border-radius: 0;
+}
+
 .navbar-options .navbar-option .material-symbols-rounded {
     margin: 0;
     padding: 2px 15px;
@@ -847,4 +852,93 @@ button.goBack.material-symbols-rounded:active {
 .centered h3,
 .centered h2 {
     text-align: center;
+}
+
+/* Context Menue */
+#contextmenu {
+    display: none;
+    position: absolute;
+    background-color: var(--background);
+    color: var(--onBackground);
+    border-radius: 1rem;
+    padding: .5rem;
+    box-shadow: 0 0 5px 0 var(--promptShadow);
+    z-index: 2;
+}
+
+#contextmenu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#contextmenu.extended .fab-des {
+    display: flex;
+}
+
+/* The sidebar has a list of options. */
+#contextmenu.extended div.options {
+    display: flex;
+    padding: 0 1.25em;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 3.5rem;
+    align-items: normal;
+}
+
+
+#contextmenu.extended ul.navbar-options {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .3em;
+    width: 100%;
+}
+
+
+#contextmenu.extended .navbar-option {
+    font-size: large;
+    padding: 8px 10px;
+    border-radius: 20px;
+    color: var(--onPrimary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    transition: 200ms;
+}
+
+
+
+#contextmenu .material-symbols-rounded.btn {
+    font-size: 25px !important;
+    margin-right: .3rem;
+} 
+
+#contextmenu.extended .navbar-option:hover {
+    background-color: var(--primaryHover);
+}
+
+#contextmenu.extended .navbar-option.flag-danger:hover {
+    color: var(--onErrorHover);
+    background-color: var(--errorHover);
+}
+
+.navbar-option.flag-danger:hover .material-symbols-rounded {
+    color: var(--onErrorHover);
+}
+
+#contextmenu.extended .navbar-option:hover .material-symbols-rounded {
+    background-color: transparent;
+}
+
+#contextmenu .navbar-options .navbar-option .material-symbols-rounded {
+    padding: 2px 0;
+    border-radius: 0;
+}
+
+#contextmenu .navbar-option {
+    gap: 10px;
 }

@@ -12,6 +12,8 @@ Deltos Cloud supports six languages by default:
 
 However, you are able to add additonal languages, click here to learn more.
 
+
+
 ## 
 ![powered_by_bun](https://github.com/user-attachments/assets/20ff00c6-ac9f-46b6-b7c5-0367b4e63c46)
 
