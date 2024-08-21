@@ -1,5 +1,5 @@
 import { Router } from "../library/web/route";
-import { contentType, translateString } from "../library/web/htmlViewEngine";
+import { contentType, getLanguages, translateString } from "../library/web/htmlViewEngine";
 import { Authentication } from "../library/auth/authentication";
 import { User } from "../library/auth/authentication";
 import { FileModel, FileResponseModel, Filesystem, FolderModel } from "../library/data/fileDatabase";
@@ -95,6 +95,26 @@ const router = new Router("/api/htmx")
         return new Response(await translateString({ file: html, req }), contentType);
     });
     
+
+// @ts-expect-error
+import settingsHtml from "../frontend/html/settings.html" with { type: "text" };
+import { translations } from "../library/misc/translations";
+
+router.get("/settings.html", async (req) => {
+    
+
+    const regionNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' });
+
+    let translationDropdown = (country) => /* HTML */`
+        <option value="${country}">${regionNamesInEnglish.of(country) == "EN" ? "United States" : regionNamesInEnglish.of(country)}</option>
+    `;
+
+    let dropdown = Object.keys(await translations).map(translationDropdown).join("");
+
+    return new Response(await translateString({ file: settingsHtml, req, data: {test: "Hello World", languages: dropdown} }), contentType);
+});
+
+
 function mimeTypeRender(mimeType: string, file: FileModel): string {
     if(mimeType.startsWith("image")) return /* HTML */`
         <img src="/files/api/raw/${file.fileId}" alt="Preview" />

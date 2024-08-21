@@ -9,20 +9,17 @@ import registerHtml from "../frontend/html/register.html" with { type: "text" };
 import manifestJson from "../frontend/html/manifest.json";
 import { Authentication, reCAPTCHA } from "../library/auth/authentication";
 
+const sendIndex = async (req: Request) => {
+    if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
+    return new Response(await translateString({ file: indexHtml, req }), contentType);
+};
 
 const router = new Router("/")
-    .get("/", async (req) => {
-        if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
-        return new Response(await translateString({ file: indexHtml, req }), contentType);
-    })
-    .get("/f/:folder", async (req) => {
-        if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
-        return new Response(await translateString({ file: indexHtml, req }), contentType);
-    })
-    .get("/v/:file", async (req) => {
-        if (await Authentication.verifyJWT(req) == false) return Response.redirect("/login");
-        return new Response(await translateString({ file: indexHtml, req }), contentType);
-    })
+    .get("/", sendIndex)
+    .get("/settings", sendIndex)
+    .get("/f/:folder", sendIndex)
+    .get("/v/:file", sendIndex)
+    
     .get("/login", async (req) => {
         return new Response(await translateString({ file: loginHtml, req }), contentType);
     })

@@ -19,6 +19,9 @@
     "side_menu_addons": "Modules",
     "side_menu_settings": "Paramètres",
 
+    "empty_drive": "Vous n'avez pas encore de fichiers",
+    "empty_drive_subtitle": "Glissez des fichiers ici ou cliquez sur 'Télécharger' pour ajouter des fichiers",
+
     "folder_create_title": "Créer un dossier",
     "folder_create_name": "Nom du dossier",
     "folder_create_button": "Créer un dossier",

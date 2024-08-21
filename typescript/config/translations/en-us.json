@@ -19,6 +19,9 @@
     "side_menu_addons": "Addons",
     "side_menu_settings": "Settings",
 
+    "empty_drive": "You have no files yet",
+    "empty_drive_subtitle": "Drag files here or click 'Upload' to add files",
+
     "folder_create_title": "Create Folder",
     "folder_create_name": "Folder name",
     "folder_create_button": "Create Folder",

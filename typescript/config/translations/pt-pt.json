@@ -19,13 +19,16 @@
     "side_menu_addons": "Complementos",
     "side_menu_settings": "Configurações",
 
-    "folder_create_title": "Criar Pasta",
+    "empty_drive": "Você ainda não tem arquivos",
+    "empty_drive_subtitle": "Arraste arquivos aqui ou clique em 'Carregar' para adicionar arquivos",
+
+    "folder_create_title": "Criar pasta",
     "folder_create_name": "Nome da pasta",
-    "folder_create_button": "Criar Pasta",
+    "folder_create_button": "Criar pasta",
     "folder_create_description": "Crie uma pasta para organizar seus arquivos. Ao criar pastas, você pode gerenciar e categorizar melhor seus documentos, imagens e outros arquivos importantes.",
 
     "login_title": "Entrar",
-    "login_subtitle": "Entrar com sua conta Deltos",
+    "login_subtitle": "Entre com sua conta Deltos",
     "login_forgot_password": "Esqueceu a senha?",
     "login_button": "Entrar",
     "login_no_account": "Criar conta",

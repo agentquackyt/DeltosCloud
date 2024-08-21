@@ -59,7 +59,18 @@ async function translate({ file, req }: { file: string; req: Request; }): Promis
     return htmlEngine.render({lang}, translationsData !== undefined ? translationsData : {})
 }
 
-async function translateString({ file, req }: { file: string; req: Request; }): Promise<string> {
+async function getLanguage(req:Request): Promise<string> {
+    let lang = "en";
+
+    if (req.headers.has("Accept-Language")) {
+        const languages = getLanguages(req);
+        lang = languages[0];
+        console.log(languages);
+    }
+    return lang;
+}
+
+async function translateString({ file, req, data={} }: { file: string; req: Request; data?: any; }): Promise<string> {
     let lang = "en";
 
     if (req.headers.has("Accept-Language")) {
@@ -69,7 +80,8 @@ async function translateString({ file, req }: { file: string; req: Request; }): 
     let translationsData = (await translations)[lang];
 
     const htmlEngine = new HTMLTemplateEngine(file, true);
-    return htmlEngine.render({lang}, translationsData !== undefined ? translationsData : {})
+    data.lang = lang;
+    return htmlEngine.render(data, translationsData !== undefined ? translationsData : {})
 }
 
 const contentType = { headers: { "Content-Type": "text/html", } };

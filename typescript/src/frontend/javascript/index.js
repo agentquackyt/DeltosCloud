@@ -165,7 +165,9 @@ async function deleteFile() {
 
 async function load() {
     console.log(location.pathname);
-    if (location.pathname.startsWith('/f/')) {
+    if(location.pathname.startsWith('/settings')) {
+        return htmx.ajax('GET', '/api/htmx/settings.html', { target: '#app', swap: 'innerHTML' });
+    } else if (location.pathname.startsWith('/f/')) {
         await updateTitle();
         return htmx.ajax('GET', '/api/htmx/files/list.html?folder=' + location.pathname.split("/").pop(), { target: '#app', swap: 'innerHTML' })
     } else if (location.pathname.startsWith('/v/')) {

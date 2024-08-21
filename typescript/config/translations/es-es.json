@@ -19,6 +19,9 @@
     "side_menu_addons": "Complementos",
     "side_menu_settings": "Configuración",
 
+    "empty_drive": "Aún no tienes archivos",
+    "empty_drive_subtitle": "Arrastra archivos aquí o haz clic en 'Subir' para añadir archivos",
+
     "folder_create_title": "Crear carpeta",
     "folder_create_name": "Nombre de la carpeta",
     "folder_create_button": "Crear carpeta",

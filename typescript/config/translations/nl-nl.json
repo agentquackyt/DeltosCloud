@@ -19,6 +19,9 @@
     "side_menu_addons": "Add-ons",
     "side_menu_settings": "Instellingen",
 
+    "empty_drive": "U heeft nog geen bestanden",
+    "empty_drive_subtitle": "Sleep bestanden hierheen of klik op 'Uploaden' om bestanden toe te voegen",
+
     "folder_create_title": "Map maken",
     "folder_create_name": "Mapnaam",
     "folder_create_button": "Map maken",
