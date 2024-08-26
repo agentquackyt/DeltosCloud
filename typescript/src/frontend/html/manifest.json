@@ -1,16 +1,27 @@
 {
-  "name": "Deltos Cloud",
-  "short_name": "Deltos",
-  "description": "Deltos Cloud is an open-source Cloud Provider with the ability to expand the functions of the cloud using an addon system",
+  "name": "Deltos Drive",
+  "short_name": "Deltos AI",
+  "description": "Deltos Drive is an open-source Cloud Provider with the ability to expand the functions of the cloud using an addon system",
+  "id": "/",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "background_color": "#202020",
+  "theme_color": "#202020",
   "icons": [
     {
       "src": "/res/images/icon.svg",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "any",
       "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/res/images/preview_narrow.png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/res/images/preview_wide.png",
+      "form_factor": "wide"
     }
   ]
 }

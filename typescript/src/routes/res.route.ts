@@ -3,6 +3,11 @@ import { Router } from "../library/web/route";
 import iconSvg from "../frontend/images/icon.svg" with { type: "text" };
 // @ts-expect-error
 import icon2Svg from "../frontend/images/icon2.svg" with { type: "text" };
+
+// @ts-expect-error
+import preview_narrow from "../frontend/images/preview_narrow.png" with { type: "file" };
+// @ts-expect-error
+import preview_wide from "../frontend/images/preview_wide.png" with { type: "file" };
 //style
 
 // @ts-expect-error
@@ -23,6 +28,8 @@ const router = new Router("/res")
         switch (params.id) {
             case "icon.svg": return new Response(icon2Svg, { headers: { "Content-Type": "image/svg+xml" } });
             case "icon2.svg": return new Response(iconSvg, { headers: { "Content-Type": "image/svg+xml" } });
+            case "preview_narrow.png": return new Response(Bun.file(preview_narrow), { headers: { "Content-Type": "image/png" } });
+            case "preview_wide.png": return new Response(Bun.file(preview_wide), { headers: { "Content-Type": "image/png" } });
         }
         return new Response("Image " + params.id);
     })
